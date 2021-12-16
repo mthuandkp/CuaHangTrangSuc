@@ -126,15 +126,6 @@ class SanPhamDB extends ConnectionDB
             $objWorkSheet->setTitle("Sản Phẩm");
             $numRow = 1;
 
-
-            // $drawing->setPath('images/Yashika.jpg'); /* put your path and image here */
-            // $drawing->setCoordinates('A1');
-            // $drawing->setOffsetX(110);
-            // $drawing->setRotation(25);
-            // $drawing->getShadow()->setVisible(true);
-            // $drawing->getShadow()->setDirection(45);
-            // $drawing->setWorksheet($spreadsheet->getActiveSheet());
-
             $objWorkSheet
                 ->setCellValue('A' . $numRow, 'Mã Sản Phẩm')
                 ->setCellValue('B' . $numRow, 'Tên Sản Phẩm')
@@ -159,7 +150,7 @@ class SanPhamDB extends ConnectionDB
             $objPHPExcel->setActiveSheetIndex(0);
             $objWriter = new Xlsx($objPHPExcel);
             $filename = 'Product' . date("dmY_His") . '.xlsx';
-            $objWriter->save('./public/excel/' . $filename);
+            $objWriter->save('/CuaHangTrangSuc/public/excel/' . $filename);
             $result['NAME'] = '/CuaHangTrangSuc/public/excel/' . $filename;
         } catch (Exception $e) {
             $result['ERROR'] = $e->getMessage();
