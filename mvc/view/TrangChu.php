@@ -18,7 +18,7 @@
     <div class="header">
         <div class="address">
             <i class="fa fa-map-marker"> Hồ Chí Minh, Việt Nam</i>
-            <i class="fa fa-envelope"> milfuniture@gmail.com</i>
+            <i class="fa fa-envelope"> infinity@gmail.com</i>
         </div>
     </div>
     <nav class="navbar sticky-top navbar-expand-md navbar-light ">
@@ -35,19 +35,16 @@
                         <a class="nav-link a active" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangChu">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangTri">TRANG TRÍ</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/VongTay">vÒNG TAY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongNgu">PHÒNG NGỦ</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/DayChuyen">DÂY CHUYỀN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongLamViec">PHÒNG LÀM VIỆC</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/KhuyenTai">KHUYÊN TAI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongKhach">PHÒNG KHÁCH</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongAn">PHÒNG ĂN</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/Nhan">NHẪN</a>
                     </li>
                 </ul>
             </div>
@@ -59,18 +56,17 @@
                 <div class="dropdown">
                     <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
                     <div class="dropdown-content user" style="margin-top: -0.5rem;">
-                        <?php 
-                            if (!isset($_SESSION['account'])) {
-                                echo '<a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>';
-                                echo '<a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                            }
-                            else{
-                                echo '<a href="/CuaHangTrangSuc/ThayDoiThongTin">Thay đổi thông tin</a>
+                        <?php
+                        if (!isset($_SESSION['account'])) {
+                            echo '<a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>';
+                            echo '<a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
+                        } else {
+                            echo '<a href="/CuaHangTrangSuc/ThayDoiThongTin">Thay đổi thông tin</a>
                                 <a href="/CuaHangTrangSuc/DoiMatKhau">Đổi mật khẩu</a>
                                 <a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
                                 <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                            }
-                        ?>                        
+                        }
+                        ?>
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -91,46 +87,38 @@
         </div>
     </nav>
     <div class="banner">
-        <img src="/CuaHangTrangSuc/public/image/BANNER_CHINH_1.jpg" alt="">
+        <img src="/CuaHangTrangSuc/public/image/BANNER_CHINH_1.png" alt="">
     </div>
     <h2 class="title">
-        <span>Nội thất cho ngôi nhà hiện đại</span>
+        <span>Infinity thương hiệu trang sức nam thời trang - phong cách</span>
     </h2>
     <p class="content">
-        Cozy được hình thành từ năm 1995 với sứ mệnh mang đến những bộ sưu tập nội thất có thiết kế đương đại,
-        chất lượng vượt trội từ các nước Italy, Đức, Nhật Bản với giá thành hợp lý nhất. Các sản phẩm từ sofa,
-        bàn ăn đến từng lọ hoa trang trí,... tất cả được các Designers đến từ Italy và Australia thiết kế đồng bộ,
-        tạo nên những không gian sống hoàn chỉnh và tinh tế nhất.
+        Là một trong những công ty hàng đầu về lĩnh vực cung cấp cấp trang sức vàng bạc, đá quý, đá thiên nhiên với mẫu mã đa dạng, chất lượng đảm bảo, đáp ứng nhiều nhu cầu, thị hiếu khách hàng, được khách hàng trong và ngoài nước đánh giá cao.
+        Với quy mô hoạt động sâu rộng, công ty đã cung cấp cho khách hàng trong và ngoài nước lượng sản phẩm lớn mỗi năm và đáp ứng các nhu cầu thiết kế cao cấp của khách hàng. Phương châm "Trao trọn niềm tin - Đồng hành cùng bạn", chúng tôi đang ngày càng giành được sự yêu mến của khách hàng và có vị trí cao trên thị trường.
     </p>
     <div class="category-container">
         <div class="category">
-            <a href="/CuaHangTrangSuc/TrangTri">
-                <img src="/CuaHangTrangSuc/public/image/cate-5.jpg" alt="cate-1">
-                <p>Trang trí</p>
+            <a href="/CuaHangTrangSuc/VongTay">
+                <img src="/CuaHangTrangSuc/public/image/cate-1.jpg" alt="cate-1">
+                <p>Vòng tay</p>
             </a>
         </div>
         <div class="category">
-            <a href="/CuaHangTrangSuc/PhongNgu">
+            <a href="/CuaHangTrangSuc/DayChuyen">
                 <img src="/CuaHangTrangSuc/public/image/cate-4.jpg" alt="cate-2">
-                <p>Phòng ngủ</p>
+                <p>Dây chuyền</p>
             </a>
         </div>
         <div class="category">
-            <a href="/CuaHangTrangSuc/PhongLamViec">
+            <a href="/CuaHangTrangSuc/KhuyenTai">
                 <img src="/CuaHangTrangSuc/public/image/cate-3.jpg" alt="cate-3">
-                <p>Phòng làm việc</p>
+                <p>Khuyên tai</p>
             </a>
         </div>
         <div class="category">
-            <a href="/CuaHangTrangSuc/PhongKhach">
+            <a href="/CuaHangTrangSuc/Nhan">
                 <img src="/CuaHangTrangSuc/public/image/cate-2.jpg" alt="cate-4">
-                <p>Phòng khách</p>
-            </a>
-        </div>
-        <div class="category">
-            <a href="/CuaHangTrangSuc/PhongAn">
-                <img src="/CuaHangTrangSuc/public/image/cate-1.jpg" alt="cate-5">
-                <p>Phòng ăn</p>
+                <p>Nhẫn</p>
             </a>
         </div>
     </div>
@@ -144,10 +132,10 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
-                <img src="/CuaHangTrangSuc/public/image/Banner_phu_2.jpg" alt="1" width="100%" height="100%">
+                <img src="/CuaHangTrangSuc/public/image/Banner_phu_1.png" alt="1" width="100%" height="100%">
             </div>
             <div class="carousel-item">
-                <img src="/CuaHangTrangSuc/public/image/banner_phu_3.jpg" alt="2" width="100%" height="100%">
+                <img src="/CuaHangTrangSuc/public/image/Banner_phu_2.jpg" alt="2" width="100%" height="100%">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
@@ -159,19 +147,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div><br><br>
-    <div class="info-container">
-        <div class="info">
-            <img src="/CuaHangTrangSuc/public/image/Banner_phu_1.jpg" alt="">
-        </div>
-        <div class="info">
-            <h2>THIẾT KẾ HIỆN ĐẠI</h2><br>
-            <p>MILD là thương hiệu tiên phong phân phối các sản phẩm bàn ăn cao cấp với mẫu mã và chất liệu đa dạng kết hợp công năng tiện nghi.</p>
-            <p>Các mẫu bàn Ceramic đang được đặc biệt ưa chuộng bởi các đặc điểm ưu việt. Ceramic đã qua xử lý kỹ thuật và được sử dụng trong nội thất cao cấp nhờ tính thẩm mỹ, chống trầy, và độ bền vượt trội, an toàn thân thiện với môi trường, không gây kích ứng khi sử dụng.
-                MILD độc quyền phân phối các sản phẩm nội thất Ceramic Ý cao cấp có độ bóng gấp 3 lần ceramic thông thường.</p>
-            <p>Các mẫu bàn đá marble nguyên khối tự nhiên của MILD được phủ lớp sơn mài bóng chống thấm ẩm, được chế tác thủ công tỉ mỉ đến từng đường nét nhằm đảm bảo độ bền và tính thẩm mỹ cao.</p>
-            <p>Tất cả các bộ sưu tập bàn ăn của MILD đều có thiết kế kết hợp công năng tiện nghi đáp ứng linh hoạt nhiều nhu cầu của khách hàng. Bàn ăn thông minh kéo dãn nhiều cấp độ là sự lựa chọn hoàn hảo cho không gian sang trọng và lịch lãm.</p>
-        </div>
-    </div><br>
+
     <div class="footer-container">
         <div class="footer">
             <img src="/CuaHangTrangSuc/public/image/logo.png" alt="">
@@ -185,8 +161,8 @@
             <a href="">LIÊN HỆ</a><br>
         </div>
         <div class="footer">
-            <a href="">VỀ MILD</a><br>
-            <a href="">TẠI SAO LẠI CHỌN MILD</a><br>
+            <a href="">VỀ INFINITY</a><br>
+            <a href="">TẠI SAO LẠI CHỌN INFINITY</a><br>
         </div>
         <div class="footer">
             <h3>ĐĂNG KÝ NHẬN TIN</h3><br>

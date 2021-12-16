@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/CuaHangTrangSuc/my-css.css">
     <script src="/CuaHangTrangSuc/processFunc.js"></script>
-    <title>Trang Trí</title>
+    <title>Dây chuyền</title>
 </head>
 
 <body>
-    <div class="header">
+<div class="header">
         <div class="address">
             <i class="fa fa-map-marker"> Hồ Chí Minh, Việt Nam</i>
-            <i class="fa fa-envelope"> milfuniture@gmail.com</i>
+            <i class="fa fa-envelope"> infinity@gmail.com</i>
         </div>
     </div>
     <nav class="navbar sticky-top navbar-expand-md navbar-light ">
@@ -36,19 +36,16 @@
                         <a class="nav-link a active" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangChu">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangTri">TRANG TRÍ</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/VongTay">vÒNG TAY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongNgu">PHÒNG NGỦ</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/DayChuyen">DÂY CHUYỀN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongLamViec">PHÒNG LÀM VIỆC</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/KhuyenTai">KHUYÊN TAI</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongKhach">PHÒNG KHÁCH</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/PhongAn">PHÒNG ĂN</a>
+                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/Nhan">NHẪN</a>
                     </li>
                 </ul>
             </div>
@@ -91,15 +88,12 @@
         </div>
     </nav>
     <div class="banner">
-        <img src="/CuaHangTrangSuc/public/image/TRANG_TRI_BANNER.jpg" alt="">
+        <img src="/CuaHangTrangSuc/public/image/BANNER_PHONGNGU.jpg" alt="">
     </div>
     <h2 class="title">
-        <span>TRANG TRÍ</span>
+        <span>DÂY CHUYỀN</span>
     </h2>
-    <p class="content">
-        Các phụ kiện nhập khẩu từ các hãng thiết kế nội thất uy tín của Australia mang lại điểm nhấn đặc biệt sang trọng cho không gian nội thất
-    </p>
-
+    
     <div style="width: 80%;margin-left: 10%;margin-top: 1rem;">
         <h2 style="font-weight: bolder;">Tìm kiếm</h2>
         <div class="form-row">
@@ -165,8 +159,8 @@
             <a href="">LIÊN HỆ</a><br>
         </div>
         <div class="footer">
-            <a href="">VỀ MILD</a><br>
-            <a href="">TẠI SAO LẠI CHỌN MILD</a><br>
+            <a href="">VỀ INFINITY</a><br>
+            <a href="">TẠI SAO LẠI CHỌN INFINITY</a><br>
         </div>
         <div class="footer">
             <h3>ĐĂNG KÝ NHẬN TIN</h3><br>
@@ -178,7 +172,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP01',
+                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP02',
                 success: function(data) {
                     var data = JSON.parse(data);
                     $xhtml = '';
@@ -240,10 +234,11 @@
             }
 
             $.ajax({
-                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP01',
+                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP02',
                 success: function(data) {
                     var data = JSON.parse(data);
                     $xhtml = '';
+
                     //Sort aray
                     switch ($sort) {
                         case '0': {

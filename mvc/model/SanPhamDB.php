@@ -9,13 +9,13 @@ class SanPhamDB extends ConnectionDB
     //Lay sanpham
     function getProductById($productId)
     {
-        $qry = "SELECT * FROM `noithat` WHERE `MASP`='$productId';";
+        $qry = "SELECT * FROM `trangsuc` WHERE `MASP`='$productId';";
         return mysqli_fetch_assoc(mysqli_query($this->conn, $qry));
     }
     //Lay tat ca sanpham
     function getAllProduct($isDisable = false)
     {
-        $qry = "SELECT * FROM `noithat`;";
+        $qry = "SELECT * FROM `trangsuc`;";
         $data = array();
         $rs = mysqli_query($this->conn, $qry);
         while ($row = mysqli_fetch_assoc($rs)) {
@@ -36,7 +36,7 @@ class SanPhamDB extends ConnectionDB
     function addNewProduct($productArr)
     {
         //('','','',,,'',true,0)
-        $qry = "INSERT INTO `noithat`(`MASP`, `TENSP`, `MALOAI`, `GIA`, `SOLUONG`, `HINHANH`, `TRANGTHAI`, `PHAMTRAMGIAM`) VALUES ";
+        $qry = "INSERT INTO `trangsuc`(`MASP`, `TENSP`, `MALOAI`, `GIA`, `SOLUONG`, `HINHANH`, `TRANGTHAI`, `PHAMTRAMGIAM`) VALUES ";
         foreach ($productArr as $value) {
             $qry .= "('$value[MASP]','$value[TENSP]','$value[MALOAI]',$value[GIA],$value[SOLUONG],'$value[HINHANH]',true,0),";
         }
@@ -49,7 +49,7 @@ class SanPhamDB extends ConnectionDB
     //Cap nhat thong tin san pham
     function updateInformationProduct($product)
     {
-        $qry = "UPDATE `noithat` SET `TENSP`='$product[TENSP]',`MALOAI`='$product[MALOAI]',`GIA`=$product[GIA],`SOLUONG`=$product[SOLUONG],`HINHANH`='$product[HINHANH]',`PHANTRAMGIAM`=$product[PHANTRAMGIAM] WHERE `MASP`='$product[MASP]';";
+        $qry = "UPDATE `trangsuc` SET `TENSP`='$product[TENSP]',`MALOAI`='$product[MALOAI]',`GIA`=$product[GIA],`SOLUONG`=$product[SOLUONG],`HINHANH`='$product[HINHANH]',`PHANTRAMGIAM`=$product[PHANTRAMGIAM] WHERE `MASP`='$product[MASP]';";
 
         if (mysqli_query($this->conn, $qry)) {
             return true;
@@ -63,7 +63,7 @@ class SanPhamDB extends ConnectionDB
 
         foreach ($productArr as $value) {
             $currentProduct = $this->getProductById($value['MASP']);
-            $qry .= "UPDATE `noithat` SET `SOLUONG`=(-$value[amount]+$currentProduct[SOLUONG]) WHERE `MASP`='$value[MASP]';";
+            $qry .= "UPDATE `trangsuc` SET `SOLUONG`=(-$value[amount]+$currentProduct[SOLUONG]) WHERE `MASP`='$value[MASP]';";
         }
         if (mysqli_multi_query($this->conn, $qry)) {
             return true;
@@ -77,7 +77,7 @@ class SanPhamDB extends ConnectionDB
 
         foreach ($productArr as $value) {
             $currentProduct = $this->getProductById($value['MASP']);
-            $qry .= "UPDATE `noithat` SET `SOLUONG`=($value[SOLUONG]+$currentProduct[SOLUONG]) WHERE `MASP`='$value[MASP]';";
+            $qry .= "UPDATE `trangsuc` SET `SOLUONG`=($value[SOLUONG]+$currentProduct[SOLUONG]) WHERE `MASP`='$value[MASP]';";
         }
         if (mysqli_multi_query($this->conn, $qry)) {
             return true;
@@ -87,7 +87,7 @@ class SanPhamDB extends ConnectionDB
     //Xoa san pham
     function disableProductStatus($idProduct)
     {
-        $qry = "UPDATE `noithat` SET `TRANGTHAI`=false WHERE `MASP` = '$idProduct';";
+        $qry = "UPDATE `trangsuc` SET `TRANGTHAI`=false WHERE `MASP` = '$idProduct';";
         if (mysqli_query($this->conn, $qry)) {
             return true;
         }
