@@ -1150,7 +1150,7 @@ class Admin extends Controller
             $_SESSION['cart'] = $cart;
         }
 
-        if ($valid) {
+        if (isset($_SESSION['account']) && $valid) {
             $objBill = $this->getModel('HoaDonDB');
             $billId = $objBill->createNextBillId();
             $cus = $_SESSION['account'];

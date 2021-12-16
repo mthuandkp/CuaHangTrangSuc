@@ -23,7 +23,7 @@ class KhuyenMaiDB extends ConnectionDB
     //Cap nhat thong tin khuyenmai
     function updateInformationSale($sale)
     {
-        $qry = "UPDATE `khuyenmai` SET `NGAYBD`='$sale[NGAYBD]',`NGAYKT`='$sale[NGAYKT]',`PHANTRAMGIAM`=$sale[PHANTRAMGIAM] WHERE `MAKM` = '$sale[MAKM]'";
+        $qry = "UPDATE `khuyenmai` SET `NGAYBD`='$sale[NGAYBD]',`NGAYKT`='$sale[NGAYKT]' WHERE `MAKM` = '$sale[MAKM]'";
         if (mysqli_query($this->conn, $qry)) {
             return true;
         }

@@ -83,8 +83,8 @@ class HoaDonDB extends ConnectionDB
         $data = $this->getAllBill();
         $lastBillId = empty($data) ? 0 : end($data)['MAHD'];
         
-        if (strlen($lastBillId) == 0) {
-            return 'HD01';
+        if (empty($lastBillId)) {
+            return 'HD01'; 
         }
         $nextId = (int)substr($lastBillId, 2) + 1;
         

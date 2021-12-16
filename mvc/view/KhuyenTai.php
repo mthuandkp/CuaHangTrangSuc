@@ -171,7 +171,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP03',
+                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP04',
                 success: function(data) {
                     var data = JSON.parse(data);
                     $xhtml = '';
@@ -233,7 +233,7 @@
             }
 
             $.ajax({
-                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP03',
+                url: '/CuaHangTrangSuc/Admin/getAllProductByType/LSP04',
                 success: function(data) {
                     var data = JSON.parse(data);
                     $xhtml = '';

@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <table id="tableContent" class="table" style="width: 80%;margin-left: 10%;"></table>
+    <table id="tableContent" class="table" style="width: 50%;margin-left: 10%;"></table>
 
     <div id="openExportTypeProduct" style="width: 60%;background-color: #007bff; position: absolute; top: 25%; height: auto; padding: 2rem; border-radius: 1rem; color: white;left:20%;font-size: 1.3rem;border: 2px solid black;"></div>
     <script>
@@ -49,8 +49,6 @@
                         '<th scope="col" style="width: 3rem;">#</th>' +
                         '<th scope="col" style="width: 10rem;">Mã Loại Sản Phẩm</th>' +
                         '<th scope="col" style="width: 25rem;">Tên Loại Sản Phẩm</th>' +
-                        '<th scope="col">Mô Tả</th>' +
-                        '<th scope="col" style="width: 15rem;">Chức Năng</th>' +
                         '</tr>' +
                         '</thead>' +
                         '<tbody>';
@@ -59,13 +57,6 @@
                             '<th scope="row">' + ($i + 1) + '</th>' +
                             '<td>' + data[$i].MALOAI + '</td>' +
                             '<td>' + data[$i].TENLOAI + '</td>' +
-                            '<td>' + data[$i].MOTA + '</td>' +
-                            '<td>' +
-                            '<a href="/CuaHangTrangSuc/Admin/SuaLoaiSanPham/'+data[$i].MALOAI+'">' +
-                            '<button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa loại sản phẩm</button>' +
-                            '</a>' +
-                            '</td>' +
-
                             '</tr>';
                     }
                     $xhtml += '</tbody>';

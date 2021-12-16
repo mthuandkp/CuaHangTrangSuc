@@ -21,7 +21,6 @@
               <a class="dropdown-item" href="/CuaHangTrangSuc/Admin/NhanVien">Quản lý Nhân Viên</a>
               <a class="dropdown-item" href="/CuaHangTrangSuc/Admin/KhachHang">Quản lý Khách Hàng </a>
               <a class="dropdown-item" href="/CuaHangTrangSuc/Admin/KhuyenMai">Quản lý Khuyến Mãi</a>
-              <a class="dropdown-item" href="/CuaHangTrangSuc/Admin/LoaiSanPham">Quản lý Loại Sản Phẩm</a>
               <a class="dropdown-item" href="/CuaHangTrangSuc/Admin/NhaCungCap">Quản lý Nhà Cung Cấp</a>
             </div>
           </li>
