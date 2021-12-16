@@ -52,12 +52,8 @@ if ($id == '' || empty($productList)) {
       <input type="text" class="form-control" value="<?php echo $product['GIA']; ?>" id="priceProduct">
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">Số lượng</label>
-      <input type="text" class="form-control" value="<?php echo $product['SOLUONG']; ?>" id="numberProduct">
-    </div>
-    <div class="form-group">
       <label for="exampleInputEmail1" style="float: left;">Hình Ảnh hiện tại</label>
-      <img id="currentImageProduct" src="/CuaHangTrangSuc/public/image/<?php echo $product['HINHANH']; ?>" alt="error" style="width: 40%;float: right;">
+      <img id="currentImageProduct" src="/CuaHangTrangSuc/public/image/HINHANH/<?php echo $product['HINHANH']; ?>" alt="error" style="width: 40%;float: right;">
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1" style="width: 100%;">Thay đổi Hình Ảnh</label>
@@ -108,7 +104,7 @@ if ($id == '' || empty($productList)) {
             currentImage = currentImage.substring($index + 1);
             if (data[0] == 0) {
               alert("Thêm ảnh thành công");
-              $("#currentImageProduct").attr('src','/CuaHangTrangSuc/public/image/'+data[1]+currentImage);
+              $("#currentImageProduct").attr('src','/CuaHangTrangSuc/public/image/HINHANH/'+data[1]+currentImage);
               return;
             }
             alert('Không thể upload ảnh');
@@ -123,7 +119,6 @@ if ($id == '' || empty($productList)) {
       $nameProduct = $("#nameProduct").val();
       $idTypeProduct = $("#idTypeProduct").val();
       $priceProduct = $("#priceProduct").val();
-      $numberProduct = $("#numberProduct").val();
       $currentImageProduct = getImageNameFromSrc($("#currentImageProduct").attr('src'));
       $decreaseProduct = $("#decreaseProduct").val();
 
@@ -137,11 +132,6 @@ if ($id == '' || empty($productList)) {
         $("#priceProduct").focus();
         return;
       }
-      else if(isNaN($numberProduct) || $numberProduct < 0 || !isInt($numberProduct)){
-        alert('SL sản phẩm là số nguyên lớn hơn bằng 0');
-        $("#numberProduct").focus();
-        return;
-      }
       else if(isNaN($decreaseProduct) || $decreaseProduct < 0 || $decreaseProduct > 100 || !isInt($decreaseProduct)){
         alert('Phần trăm giảm giá giao động từ 0-100%');
         $("#decreaseProduct").focus();
@@ -152,7 +142,6 @@ if ($id == '' || empty($productList)) {
         TENSP:$nameProduct,
         MALOAI:$idTypeProduct,
         GIA:$priceProduct,
-        SOLUONG:$numberProduct,
         HINHANH:$currentImageProduct,
         PHANTRAMGIAM:$decreaseProduct
     };

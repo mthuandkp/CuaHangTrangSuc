@@ -35,12 +35,12 @@ class SanPhamDB extends ConnectionDB
     //Them san pham moi
     function addNewProduct($productArr)
     {
-        //('','','',,,'',true,0)
-        $qry = "INSERT INTO `trangsuc`(`MASP`, `TENSP`, `MALOAI`, `GIA`, `SOLUONG`, `HINHANH`, `TRANGTHAI`, `PHAMTRAMGIAM`) VALUES ";
+        $qry = "INSERT INTO `trangsuc`(`MASP`, `TENSP`, `MALOAI`, `GIA`, `SOLUONG`, `HINHANH`, `TRANGTHAI`, `PHANTRAMGIAM`) VALUES ";
         foreach ($productArr as $value) {
             $qry .= "('$value[MASP]','$value[TENSP]','$value[MALOAI]',$value[GIA],$value[SOLUONG],'$value[HINHANH]',true,0),";
         }
-        $qry = substr($qry, 0, strlen($qry) - 1);
+        $qry = substr($qry, 0, strlen($qry) - 1).';';
+
         if (mysqli_multi_query($this->conn, $qry)) {
             return true;
         }
@@ -49,7 +49,7 @@ class SanPhamDB extends ConnectionDB
     //Cap nhat thong tin san pham
     function updateInformationProduct($product)
     {
-        $qry = "UPDATE `trangsuc` SET `TENSP`='$product[TENSP]',`MALOAI`='$product[MALOAI]',`GIA`=$product[GIA],`SOLUONG`=$product[SOLUONG],`HINHANH`='$product[HINHANH]',`PHANTRAMGIAM`=$product[PHANTRAMGIAM] WHERE `MASP`='$product[MASP]';";
+        $qry = "UPDATE `trangsuc` SET `TENSP`='$product[TENSP]',`MALOAI`='$product[MALOAI]',`GIA`=$product[GIA],`HINHANH`='$product[HINHANH]',`PHANTRAMGIAM`=$product[PHANTRAMGIAM] WHERE `MASP`='$product[MASP]';";
 
         if (mysqli_query($this->conn, $qry)) {
             return true;
@@ -100,9 +100,9 @@ class SanPhamDB extends ConnectionDB
 
     function uploadImage($data, $time)
     {
-        $directory = "./public/image/";
+        $directory = "./public/image/HINHANH/";
         //return $data;
-        if (move_uploaded_file($data['tmp_name'], $directory . $time . $data['name'])) {
+        if (move_uploaded_file($data['tmp_name'], $directory . $data['name'])) {
             return true;
         }
         return false;
@@ -150,7 +150,7 @@ class SanPhamDB extends ConnectionDB
             $objPHPExcel->setActiveSheetIndex(0);
             $objWriter = new Xlsx($objPHPExcel);
             $filename = 'Product' . date("dmY_His") . '.xlsx';
-            $objWriter->save('/CuaHangTrangSuc/public/excel/' . $filename);
+            $objWriter->save('./public/excel/' . $filename);
             $result['NAME'] = '/CuaHangTrangSuc/public/excel/' . $filename;
         } catch (Exception $e) {
             $result['ERROR'] = $e->getMessage();

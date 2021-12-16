@@ -132,7 +132,6 @@
           data: $obj
         },
         success: function(data) {
-          alert(data);
           if (data == 0) {
             alert('Thêm Nhân Viên thành công');
             $("#nameStaff").val("");

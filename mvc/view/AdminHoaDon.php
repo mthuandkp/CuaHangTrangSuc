@@ -63,9 +63,7 @@
                 <select class="form-control" id="inputBillStatus">
                     <option value="TT01">CHỜ XÁC NHẬN</option>
                     <option value="TT02">ĐÃ XÁC NHẬN</option>
-                    <option value="TT03">ĐANG GIAO HÀNG</option>
-                    <option value="TT04">ĐÃ GIAO HÀNG</option>
-                    <option value="TT05">ĐÃ NHẬN</option>
+                    <option value="TT03">ĐÃ NHẬN</option>
                 </select>
             </div>
         </div>

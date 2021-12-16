@@ -137,7 +137,7 @@
                                 '<th scope="col">' + formatter.format(data[$i].TONG) + '</th>' +
                                 '<td>' +
                                 '<button onclick="viewBillDetail(\''+data[$i].MAPN+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: #007bff;margin-top: 0.3rem;">In phiếu nhập</button>' +
-                                '<a href="/CuaHangTrangSuc/Admin/XemChiTietPhieuNhap/1">' +
+                                '<a href="/CuaHangTrangSuc/Admin/XemChiTietPhieuNhap/'+data[$i].MAPN+'">' +
                                 '<button class="btn btn-primary btnControl" type="submit" style="background-color: green;margin-top: 0.3rem;">Xem chi tiết</button>' +
                                 '</a>' +
                                 '</td></tr>';

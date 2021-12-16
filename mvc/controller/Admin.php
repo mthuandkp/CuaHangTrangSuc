@@ -28,13 +28,17 @@ class Admin extends Controller
     function XemChiTietHD($id)
     {
         $objBillDetail = $this->getModel('HoaDonDB');
+        $bill = $objBillDetail->getBillById($id)[0];
         $objProduct = $this->getModel('SanPhamDB');
+        $objSale = $this->getModel('KhuyenMaiDB');
         $data = $objBillDetail->getBillDetailById($id);
         foreach ($data as $key => $value) {
             $product = $objProduct->getProductById($value['MASP']);
             $data[$key]['TENSP'] = $product['TENSP'];
             $data[$key]['HINHANH'] = $product['HINHANH'];
         }
+        $data['data'] = $data;
+        $data['sale'] = $objSale->getSaleById($bill['MAKM']);
         require_once('./menuadmin.php');
         $this->View('AdminChiTietHoaDon', 'Admin Chi Tiết HĐ', $data);
     }
@@ -695,8 +699,19 @@ class Admin extends Controller
     }
     function XemCHiTietPhieuNhap($id)
     {
+        $objReceiptDetail = $this->getModel('PhieuNhapDB');
+        $objProduct = $this->getModel('SanPhamDB');
+        $objSale = $this->getModel('KhuyenMaiDB');
+        $data = $objReceiptDetail->getReceiptDetailById($id);
+        foreach ($data as $key => $value) {
+            $product = $objProduct->getProductById($value['MASP']);
+            $data[$key]['TENSP'] = $product['TENSP'];
+            $data[$key]['HINHANH'] = $product['HINHANH'];
+        }
+        $data['data'] = $data;
+
         require_once('./menuadmin.php');
-        $this->View('AdminChiTietPhieuNhap', 'Admin Chi Tiết Phiếu Nhập', $id);
+        $this->View('AdminChiTietPhieuNhap', 'Admin Chi Tiết Phiếu Nhập', $data);
     }
 
     function getAllReceipt()

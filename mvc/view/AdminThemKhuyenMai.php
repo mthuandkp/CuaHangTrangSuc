@@ -37,6 +37,10 @@
       $endSale = $("#endSale").val();
       $decreaseSale = $("#decreaseSale").val();
 
+      if ($startSale == '') {
+        alert('Ngày bắt đầu không được trống !!!');
+        return;
+      }
       if ($endSale == '') {
         alert('Ngày kết thúc không được trống !!!');
         return;

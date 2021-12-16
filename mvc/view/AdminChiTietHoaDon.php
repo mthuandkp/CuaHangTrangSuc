@@ -44,6 +44,8 @@
         </thead>
         <tbody>
             <?php
+            $sale = $data['sale'];
+            $data = $data['data'];
             $count = 1;
             $sumNumber = 0;
             $sumPrice = 0;
@@ -68,8 +70,21 @@
             </tr><tr>
             <th scope="row" colspan="4">Tổng</th>
             <th scope="row">'.$sumNumber.'</th>
-            <th scope="row" colspan="2">'.number_format($sumPrice).' VNĐ</th>
+            <th scope="row" colspan="2"></th>
             <th scope="row">'.number_format($sumPriceSale).' VNĐ</th>
+            </tr>';
+            echo '<tr>
+            <th scope="row" colspan="4">Khuyến Mãi</th>
+            <th scope="row">'.$sale['MAKM'].'</th>
+            <th scope="row">'.$sale['NGAYBD'].' - '.$sale['NGAYKT'].'</th>
+            <th scope="row" >'.$sale['PHANTRAMGIAM'].' %</th>
+            <th scope="row"> - '.number_format($sumPriceSale*$sale['PHANTRAMGIAM']/100).' VNĐ</th>
+            </tr>';
+            echo '<tr>
+            <th scope="row" colspan="4">Thành Tiền</th>
+            <th scope="row"></th>
+            <th scope="row" colspan="2"></th>
+            <th scope="row">'.number_format($sumPriceSale*(1-$sale['PHANTRAMGIAM']/100)).' VNĐ</th>
             </tr>';
             ?>
 

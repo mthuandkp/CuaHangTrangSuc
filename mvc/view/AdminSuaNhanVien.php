@@ -67,7 +67,7 @@
         </div>
         <div class="form-group">
             <label for="exampleInputEmail1">Mật khẩu</label>
-            <input type="text" class="form-control" id="passwordStaff" value="<?php echo $data['Staff']['MATKHAU']; ?>">
+            <input type="text" class="form-control" id="passwordStaff" value="">
         </div>
 
         <a href="/CuaHangTrangSuc/Admin/NhanVien">
