@@ -72,6 +72,7 @@
                     <label class="form-check-label" for="autoSizingCheck">Mã Sản Phẩm</label>
                 </div>
                 <input type="text" class="form-control" id="inputProductId">
+                <button style="font-size: 1rem;width: 100%;background-color: white;font-weight: bolder;" onclick="createAutoId();">Tạo mã tự động</button>
             </div>
             <div class="form-group col-md-4">
                 <div class="form-check mb-2">
@@ -608,6 +609,21 @@
             $("#containerCurentImage").hide();
             $("#inputProductImage").val("");
             $("#currentImage").val("");
+        }
+
+        function createAutoId() {
+            if ($("#inputProductId").val() != '') {
+                alert("Vui lòng xóa mã SP hiện tại");
+                return;
+            }
+            $.ajax({
+                url: '/CuaHangNoiThat/Admin/createAutoProductId',
+                success: function(data) {
+
+                    var data = JSON.parse(data);
+                    $("#inputProductId").val(data.ID);
+                }
+            })
         }
     </script>
 </body>

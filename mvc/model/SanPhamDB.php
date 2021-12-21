@@ -46,6 +46,29 @@ class SanPhamDB extends ConnectionDB
     //Tao ma sanpham tiep theo
     function createNextProductId()
     {
+        $data = $this->getAllProduct();
+        $lastBillId = array('MASP'=>'SP00');
+        foreach($data as $value){
+            $currentId = (int)substr($lastBillId['MASP'], 2);
+            $id = (int)substr($value['MASP'], 2);
+            if($id > $currentId){
+                $lastBillId = $value;
+            }
+        }
+        //$lastBillId = empty($data) ? array() : end($data);
+        
+        if (empty($lastBillId)) {
+            return 'SP01';
+        }
+        $nextId = (int)substr($lastBillId['MASP'], 2) + 1;
+        
+        while (strlen($nextId) < 2) {
+            $nextId = '0' . $nextId;
+        }
+
+        $newId = substr($lastBillId['MASP'], 0, 2) . $nextId;
+        
+        return substr($lastBillId['MASP'], 0, 2) . $nextId;
     }
     //Lay sanpham theo maloai
     function getProductByTypeId($typeId)

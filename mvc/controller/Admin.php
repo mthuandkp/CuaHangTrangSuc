@@ -1269,6 +1269,14 @@ class Admin extends Controller
         echo json_encode($result);
     }
 
+    function createAutoProductId(){
+        $objProduct = $this->getModel("SanPhamDB");
+        
+        echo json_encode(array(
+            'ID'=>$objProduct->createNextProductId()
+        ));         
+    }
+
     /* ============================================================== */
     /* =====================TRANG THAI GIAO HANG ====================*/
     /* ============================================================== */
