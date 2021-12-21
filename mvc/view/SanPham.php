@@ -139,11 +139,11 @@
     <div class="product-box">
         <?php
         $listPro = $data['data'];
-        $start = ($data['page'] - 1) * 10;
+        $start = ($data['page'] - 1) * 8;
 
 
         if ($start < count($listPro)) {
-            $end = ($start + 10) > count($listPro) ? count($listPro) : ($start + 10);
+            $end = ($start + 8) > count($listPro) ? count($listPro) : ($start + 8);
             for ($i = $start; $i < $end; $i++) {
                 echo '<div class="product-item">
                     <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $listPro[$i]['MASP'] . '">
@@ -169,7 +169,7 @@
     <div class="pagination">
         <?php
         $listPro = $data['data'];
-        $numberpage = count($listPro) % 10 == 0 ? count($listPro) / 10 : (int)(count($listPro) / 10) + 1;
+        $numberpage = count($listPro) % 8 == 0 ? count($listPro) / 8 : (int)(count($listPro) / 8) + 1;
 
         for ($i = 0; $i < $numberpage; $i++) {
             if ($i + 1 == $data['page']) {
