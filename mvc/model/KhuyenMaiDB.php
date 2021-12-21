@@ -67,4 +67,12 @@ class KhuyenMaiDB extends ConnectionDB
 
         return array();
     }
+
+    function disabledSale($id){
+        $qry = "UPDATE `khuyenmai` SET `TRANGTHAI`=false WHERE `MAKM` = '$id'";
+        if (mysqli_query($this->conn, $qry)) {
+            return true;
+        }
+        return false;
+    }
 }

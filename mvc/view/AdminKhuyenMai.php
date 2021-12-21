@@ -47,23 +47,43 @@
                         '<th scope="col">Ngày Bắt Đầu</th>' +
                         '<th scope="col">Ngày Kết Thúc</th>' +
                         '<th scope="col">Phần Trăm Giảm</th>' +
+                        '<th scope="col">Trạng Thái</th>' +
                         '<th scope="col" style="width: 15rem;">Chức Năng</th>' +
                         '</tr>' +
                         '</thead>' +
                         '<tbody>';
-                    for ($i = 0;$i < data.length;$i++) {
+                    for ($i = 0; $i < data.length; $i++) {
                         $xhtml += '<tr>' +
-                            '<th scope="row">'+($i+1)+'</th>' +
-                            '<td>'+data[$i].MAKM+'</td>' +
-                            '<td>'+formatDateToddmmyyyy(data[$i].NGAYBD)+'</td>' +
-                            '<td>'+formatDateToddmmyyyy(data[$i].NGAYKT)+'</td>' +
-                            '<td>'+data[$i].PHANTRAMGIAM+'%</td>' +
-                            '<td>' +
-                            '<a href="/CuaHangTrangSuc/Admin/SuaKhuyenMai/'+data[$i].MAKM+'">' +
-                            '<button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa khuyến mãi</button>' +
-                            '</a>' +
-                            '</td>' +
-                            '</tr>';
+                            '<th scope="row">' + ($i + 1) + '</th>' +
+                            '<td>' + data[$i].MAKM + '</td>' +
+                            '<td>' + formatDateToddmmyyyy(data[$i].NGAYBD) + '</td>' +
+                            '<td>' + formatDateToddmmyyyy(data[$i].NGAYKT) + '</td>' +
+                            '<td>' + data[$i].PHANTRAMGIAM + '%</td>';
+                        if (data[$i].TRANGTHAI == 1) {
+                            var begin = Date.parse(data[$i].NGAYBD);
+                            var end = Date.parse(data[$i].NGAYKT);
+                            var today = new Date();
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                            var yyyy = today.getFullYear();
+                            today = Date.parse(yyyy+'-'+mm+'-'+dd);
+
+                            if(today >= begin && today <= end){
+                                $xhtml += '<td>Mã còn hiệu lực</td>';
+                            $xhtml += '<td>' +
+                                '<button class="btn btn-primary btnControl" type="submit" style="background-color: red;" onclick="deleteSale(\'' + data[$i].MAKM + '\');">Xóa khuyến mãi</button>' +
+                                '</td>' +
+                                '</tr>';
+                            }
+                            else{
+                                $xhtml += '<td>Mã không có hiệu lực</td>';
+                            }
+                            
+                        } else {
+                            $xhtml += '<td>Mã đã bị xóa</td>';
+                        }
+
+
                     }
                     $xhtml += '</tbody>';
                     $("#tableContent").html($xhtml);
@@ -123,6 +143,21 @@
                 });
             });
         });
+
+
+        function deleteSale($id) {
+            if(!confirm("Bạn có muốn xóa khuyến mãi này ?")){
+                return;
+            }
+            $.ajax({
+                url: '/CuaHangTrangSuc/Admin/disabledSale/' + $id,
+                success: function(data) {
+                    var data = JSON.parse(data);
+                    alert(data.SMS);
+                    loadTable();
+                }
+            })
+        }
     </script>
 
 </body>

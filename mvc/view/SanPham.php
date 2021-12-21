@@ -135,6 +135,7 @@
             <span> TẤT CẢ SẢN PHẨM</span>
         </h2>
     </div>
+    <div class="products">
     <div class="product-box">
         <?php
         $listPro = $data['data'];
@@ -163,6 +164,8 @@
 
         ?>
     </div>
+    </div>
+   
     <div class="pagination">
         <?php
         $listPro = $data['data'];
@@ -185,18 +188,7 @@
 
     </div>
 
-    <!--offer img------------------------------------------------------->
-    <div class="offer-img">
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_1.png" alt="offer-img">
-            <div class="offer-text">THỜI TRANG</div>
-        </div>
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_2.png" alt="offer-img">
-            <div class="offer-text">PHONG CÁCH</div>
-        </div>
-    </div>
-    </div>
+    
     <!--footer------------------------------------------------------->
     <div class="flex-container">
         <div class="flex1"><i class="fa fa-plane" style="font-size:35px;float: left; padding: 0 8px;"></i>
@@ -247,7 +239,7 @@
             return;
         }
         $.ajax({
-            url: '/CuaHangNoiThat/Admin/addToCart/' + $productId,
+            url: '/CuaHangTrangSuc/Admin/addToCart/' + $productId,
             success: function(data) {
                 var data = JSON.parse(data);
                 alert(data.SMS);
@@ -258,7 +250,7 @@
 
     function loadCountCart() {
         $.ajax({
-            url: '/CuaHangNoiThat/Admin/countCart',
+            url: '/CuaHangTrangSuc/Admin/countCart',
             success: function(data) {
                 var data = JSON.parse(data);
                 $("#counter").html(data.COUNT)

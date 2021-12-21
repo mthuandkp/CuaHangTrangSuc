@@ -163,6 +163,7 @@
                                 '<td>';
                             if (data[i].MATRANGTHAI == 'TT01') {
                                 xhtml += '<button onclick="confirmBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;" onclick="">Xác nhận hóa đơn</button>';
+                                xhtml += '<button onclick="destroyBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: black;color:white;" onclick="">Hủy hóa đơn</button>';
                             }
 
                             xhtml += '<button  onclick="viewBillDetail(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: #007bff;margin-top: 0.3rem;">In hóa đơn</button>' +
@@ -231,6 +232,7 @@
                                 '<td>';
                             if (data[i].MATRANGTHAI == 'TT01') {
                                 xhtml += '<button onclick="confirmBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;" onclick="">Xác nhận hóa đơn</button>';
+                                xhtml += '<button onclick="destroyBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: black;color:white;" onclick="">Hủy hóa đơn</button>';
                             }
 
                             xhtml += '<button  onclick="viewBillDetail(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: #007bff;margin-top: 0.3rem;">In hóa đơn</button>' +
@@ -476,6 +478,7 @@
                             '<td>';
                         if (data[i].MATRANGTHAI == 'TT01') {
                             xhtml += '<button onclick="confirmBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;" onclick="">Xác nhận hóa đơn</button>';
+                            xhtml += '<button onclick="destroyBill(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: black;color:white;" onclick="">Hủy hóa đơn</button>';
                         }
 
                         xhtml += '<button  onclick="viewBillDetail(\'' + data[i]['MAHD'] + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: #007bff;margin-top: 0.3rem;">In hóa đơn</button>' +
@@ -517,6 +520,26 @@
         //open file
         function openfile(file) {
             window.location = file;
+        }
+
+        function destroyBill($id){
+            if(!confirm("Bạn có chắc chắn hủy hóa đơn này không ?")){
+                return;
+            }
+            $.ajax({
+                url: '/CuaHangTrangSuc/Admin/updateBillStatus/TT05',
+                data: {
+                    'id': $id
+                },
+                method: "post",
+                success: function(result) {
+                    console.log(result);
+                    if (result == 0) {
+                        alert("Cập nhật trạng thái Hóa Đơn thành công");
+                        loadTable();
+                    }
+                }
+            });
         }
     </script>
 </body>

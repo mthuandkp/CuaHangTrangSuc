@@ -123,6 +123,17 @@ class Admin extends Controller
         echo json_encode($data);
     }
 
+    function destroyBill($id){
+        $objBill = $this->getModel("HoaDonDB");
+        $result = array();
+        $result['SMS'] = 'Lỗi khi hủy';
+        if ($objBill->updateBillStatus_Cus($id, 'TT04')) {
+            $result['SMS'] = 'Hủy thành công';
+        }
+
+        echo json_encode($result);
+    }
+
     function updateBillStatus($status='TT02')
     {
 
@@ -339,6 +350,19 @@ class Admin extends Controller
         } else {
             echo 'Không thể thêm';
         }
+    }
+
+    function disabledSale($id){
+        $objSale = $this->getModel('KhuyenMaiDB');
+        $result = array();
+
+        if ($objSale->disabledSale($id)) {
+           $result['SMS'] = 'Xóa thành công';
+        } else {
+            $result['SMS'] = 'Lỗi khi xóa';
+        }
+
+        echo json_encode($result);
     }
     /*===================================================================== */
     /*============================== LOAI SAN PHAM ============================ */

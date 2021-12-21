@@ -132,15 +132,14 @@
     <div>
         <!--best-seller-product------------------------------------------------------->
         <h2 class="content">
-            <span> TẤT CẢ SẢN PHẨM</span>
+            <span> VÒNG TAY</span>
         </h2>
     </div>
+    <div class="products">
     <div class="product-box">
         <?php
         $listPro = $data['data'];
         $start = ($data['page'] - 1) * 10;
-
-
         if ($start < count($listPro)) {
             $end = ($start + 10) > count($listPro) ? count($listPro) : ($start + 10);
             for ($i = $start; $i < $end; $i++) {
@@ -163,6 +162,8 @@
 
         ?>
     </div>
+    </div>
+    
     <div class="pagination">
         <?php
         $listPro = $data['data'];
@@ -172,31 +173,20 @@
             if ($i + 1 == $data['page']) {
                 echo '<strong class="current-page page-item">' . ($i + 1) . '</strong>';
             } else {
-                echo '<a class="page-item" href="/CuaHangTrangSuc/VongTay/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
+                echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
             }
         }
 
         if ($data['page'] != $numberpage) {
-            echo '<a class="page-item" href="/CuaHangTrangSuc/VongTay/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
+            echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
         }
 
-        echo '<a class="page-item" href="/CuaHangTrangSuc/VongTay/Pages/' . $numberpage . '">Last</a>';
+        echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . $numberpage . '">Last</a>';
         ?>
 
     </div>
 
-    <!--offer img------------------------------------------------------->
-    <div class="offer-img">
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_1.png" alt="offer-img">
-            <div class="offer-text">THỜI TRANG</div>
-        </div>
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_2.png" alt="offer-img">
-            <div class="offer-text">PHONG CÁCH</div>
-        </div>
-    </div>
-    </div>
+   
     <!--footer------------------------------------------------------->
     <div class="flex-container">
         <div class="flex1"><i class="fa fa-plane" style="font-size:35px;float: left; padding: 0 8px;"></i>

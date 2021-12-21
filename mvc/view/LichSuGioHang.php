@@ -157,6 +157,21 @@
                 }
             })
         }
+
+        function destroyBill($id){
+            if (!confirm("Bạn muốn hủy đơn hàng ?")) {
+                return;
+            }
+
+            $.ajax({
+                url: '/CuaHangTrangSuc/Admin/destroyBill/' + $id,
+                success: function(data) {
+                    var data = JSON.parse(data);
+                    alert(data.SMS);
+                    loadTable();
+                }
+            })
+        }
         loadTable();
 
         function loadTable() {
@@ -187,13 +202,11 @@
                         switch ($obj.MATRANGTHAI) {
                             case 'TT01': {
                                 $xhtml += '<td style="padding:0.3rem;">Đang chờ cửa hàng xác nhận</td>' +
-                                    '<td>' +
-                                    '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button>' +
-                                    '</td>';
+                                    '<td><button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button><button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: black;color: white;font-family: "Times New Roman", Times, serif;" onclick="destroyBill(\'' + $obj.MAHD + '\');">Hủy đơn hàng</button></td>';
                                 break;
                             }
                             case 'TT02': {
-                                $xhtml += '<td padding:0.3rem;>Bạn đã nhận được hàng? Vui lòng xác nhận</td>' +
+                                $xhtml += '<td>Bạn đã nhận được hàng? Vui lòng xác nhận</td>' +
                                     '<td>' +
                                     '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: red;color: white;font-family: "Times New Roman", Times, serif;" onclick="submitBill(\'' + $obj.MAHD + '\')">Xác nhận</button>' +
                                     '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button>' +
@@ -201,7 +214,21 @@
                                 break;
                             }
                             case 'TT03': {
-                                $xhtml += '<td padding:0.3rem;>Đơn hàng hoàn tất</td>' +
+                                $xhtml += '<td>Đơn hàng hoàn tất</td>' +
+                                    '<td>' +
+                                    '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button>' +
+                                    '</td>';
+                                break;
+                            }
+                            case 'TT04': {
+                                $xhtml += '<td style="color:red;">Bạn đã hủy đơn hàng</td>' +
+                                    '<td>' +
+                                    '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button>' +
+                                    '</td>';
+                                break;
+                            }
+                            case 'TT05': {
+                                $xhtml += '<td style="color:red;">Đơn hàng đã bị admin hủy</td>' +
                                     '<td>' +
                                     '<button style="border-radius:0.5rem;margin: 0.2rem;width: 10rem;background-color: white;color: #2478ff;font-family: "Times New Roman", Times, serif;" onclick="viewDetail(\'' + $obj.MAHD + '\');">Xem Chi Tiết</button>' +
                                     '</td>';

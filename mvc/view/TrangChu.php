@@ -1,11 +1,9 @@
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="logo-img/logo.png" type="image/gif">
-    <link rel="stylesheet" href="mycss.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -62,12 +60,12 @@
                     <div class="dropdown-bell-content">
 
                         <?php
-                            $listSalePro = $data['data_sale'];
-                            foreach($listSalePro as $value){
-                                echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
-                                <div style="text-align: center;color: red;">Sản phẩm <b>'.$value['TENSP'].'</b> đang được giảm <b>'.$value['PHANTRAMGIAM'].'%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/'.$value['MASP'].'" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
+                        $listSalePro = $data['data_sale'];
+                        foreach ($listSalePro as $value) {
+                            echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
+                                <div style="text-align: center;color: red;">Sản phẩm <b>' . $value['TENSP'] . '</b> đang được giảm <b>' . $value['PHANTRAMGIAM'] . '%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
                             </div>';
-                            }
+                        }
 
                         ?>
                     </div>
@@ -78,19 +76,18 @@
                     <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
                     <div class="dropdown-user-content">
                         <?php
-                            if(isset($_SESSION['account'])){
-                                echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
+                        if (isset($_SESSION['account'])) {
+                            echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/DoiMatKhau">Đổi mật khẩu</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                            }
-                            else{
-                                echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
+                        } else {
+                            echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
                                     <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                            }
+                        }
                         ?>
-                        
-                       
-                        
+
+
+
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -139,11 +136,12 @@
             <span> SẢN PHẨM NỖI BẬT</span>
         </h2>
     </div>
-    <div class="product-box">
-        <?php
-        $listPro = $data['data'];
-        foreach ($listPro as $value) {
-            echo '<div class="product-item">
+    <div class="products" style="margin-left: 10rem;">
+        <div class="product-box">
+            <?php
+            $listPro = $data['data'];
+            foreach ($listPro as $value) {
+                echo '<div class="product-item">
                 <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '">
                     <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $value['HINHANH'] . '" alt="">
                     <i class="fa fa-search"></i>    
@@ -152,9 +150,11 @@
                 <div class="price">' . number_format($value['GIA']) . 'đ</div>
                 <div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $value['MASP'] . '\');"></div>
             </div>';
-        }
-        ?>
+            }
+            ?>
+        </div>
     </div>
+
 
 
 
@@ -162,11 +162,12 @@
     <h2 class="content">
         <span> SẢN PHẨM MỚI</span>
     </h2>
-    <div class="product-box">
-        <?php
-        $listPro = $data['data2'];
-        foreach ($listPro as $value) {
-            echo '<div class="product-item">
+    <div class="products" style="margin-left: 10rem;">
+        <div class="product-box">
+            <?php
+            $listPro = $data['data2'];
+            foreach ($listPro as $value) {
+                echo '<div class="product-item">
                 <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '">
                     <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $value['HINHANH'] . '" alt="">
                     <i class="fa fa-search"></i>    
@@ -175,9 +176,11 @@
                 <div class="price">' . number_format($value['GIA']) . 'đ</div>
                 <div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $value['MASP'] . '\');"></div>
             </div>';
-        }
-        ?>
+            }
+            ?>
+        </div>
     </div>
+
     <!--offer img------------------------------------------------------->
     <div class="offer-img">
         <div class="offer">

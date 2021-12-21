@@ -132,9 +132,10 @@
     <div>
         <!--best-seller-product------------------------------------------------------->
         <h2 class="content">
-            <span> TẤT CẢ SẢN PHẨM</span>
+            <span> KHUYÊN TAI</span>
         </h2>
     </div>
+    <div class="products">
     <div class="product-box">
         <?php
         $listPro = $data['data'];
@@ -163,6 +164,8 @@
 
         ?>
     </div>
+    </div>
+    
     <div class="pagination">
         <?php
         $listPro = $data['data'];
@@ -172,31 +175,22 @@
             if ($i + 1 == $data['page']) {
                 echo '<strong class="current-page page-item">' . ($i + 1) . '</strong>';
             } else {
-                echo '<a class="page-item" href="/CuaHangTrangSuc/KhuyenTai/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
+                echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
             }
         }
 
         if ($data['page'] != $numberpage) {
-            echo '<a class="page-item" href="/CuaHangTrangSuc/KhuyenTai/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
+            echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
         }
 
-        echo '<a class="page-item" href="/CuaHangTrangSuc/KhuyenTai/Pages/' . $numberpage . '">Last</a>';
+        echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . $numberpage . '">Last</a>';
         ?>
 
     </div>
 
     <!--offer img------------------------------------------------------->
-    <div class="offer-img">
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_1.png" alt="offer-img">
-            <div class="offer-text">THỜI TRANG</div>
-        </div>
-        <div class="offer">
-            <img src="/CuaHangTrangSuc/public/image/offer_image_2.png" alt="offer-img">
-            <div class="offer-text">PHONG CÁCH</div>
-        </div>
-    </div>
-    </div>
+    
+    
     <!--footer------------------------------------------------------->
     <div class="flex-container">
         <div class="flex1"><i class="fa fa-plane" style="font-size:35px;float: left; padding: 0 8px;"></i>

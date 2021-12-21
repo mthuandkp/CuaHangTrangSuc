@@ -164,18 +164,23 @@ h2 span {
 
 
 /*Products------------------------------------------------------------*/
-
+.products{
+    margin: 5rem;
+}
 .product-box {
     display: flex;
     overflow: hidden;
     flex-wrap: wrap;
-    width: 100%;
-    margin: 4em 0 1em 0;
+    margin-left: -30px;
+   
 }
 
 .product-item {
-    width: 370px;
-    margin: 0 3.8px 2em 3.8px;
+    overflow: hidden;
+    width: calc(25% - 30px);
+    margin-left: 30px;
+    margin-bottom: 50px;
+    
 }
 
 .product-name {
@@ -213,15 +218,12 @@ h2 span {
     color: red;
 }
 
-.add-cart {
-    position: relative;
-    padding: 0 105px;
-}
-
 .add-cart input[type=button] {
+    
     background-color: whitesmoke;
     border: 0px;
     padding: 0.2em 2em;
+    margin: 0 10em;
     transition: background-color 0.3s;
 }
 

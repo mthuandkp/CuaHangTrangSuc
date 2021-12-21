@@ -460,7 +460,7 @@
                             '<td>' + ($obj.TRANGTHAI == 1 ? 'Còn  CửaTrong Hàng' : 'Đã Xóa') + '</td>' +
                             '<td>' + $obj.PHANTRAMGIAM + '%</td>';
                         if ($obj.TRANGTHAI == 1) {
-                            $xhtml += '<td><a href="/CuaHangNoiThat/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
+                            $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
                         }
                         $xhtml += '</tr>';
                     }

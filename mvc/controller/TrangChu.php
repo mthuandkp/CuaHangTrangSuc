@@ -4,10 +4,10 @@ class TrangChu extends Controller
     function display()
     {
         $objProduct = $this->getModel('SanPhamDB');
-        $listProduct = $objProduct->getProductRandom(5);
+        $listProduct = $objProduct->getProductRandom(4);
         $data = array(
             'data'=>$listProduct,
-            'data2'=>$objProduct->getProductRandom(5),
+            'data2'=>$objProduct->getProductRandom(4),
             'data_sale'=>$objProduct->getSaleProduct()
         );
         $this->View('TrangChu','Trang Chủ',$data);
