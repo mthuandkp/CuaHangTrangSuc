@@ -173,15 +173,15 @@
                 echo '<strong class="current-page page-item">'.($i+1).'</strong>';
             }
             else{
-                echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/'.($i+1).'">'.($i+1).'</a>';
+                echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.($i+1).'">'.($i+1).'</a>';
             }
         }
 
         if($data['page'] != $numberpage){
-            echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/'.($data['page']+1).'"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
+            echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.($data['page']+1).'"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
         }
         
-        echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/'.$numberpage.'">Last</a>';
+        echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.$numberpage.'">Last</a>';
         ?>
 
     </div>
