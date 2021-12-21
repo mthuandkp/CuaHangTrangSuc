@@ -617,7 +617,7 @@
                 return;
             }
             $.ajax({
-                url: '/CuaHangNoiThat/Admin/createAutoProductId',
+                url: '/CuaHangTrangSuc/Admin/createAutoProductId',
                 success: function(data) {
 
                     var data = JSON.parse(data);
