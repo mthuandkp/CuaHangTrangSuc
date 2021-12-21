@@ -23,18 +23,18 @@
 
 <body>
     <h1 style="margin-top: 5rem;margin-left: 10%;"><?php echo $title; ?></h1>
-    <?php 
-        if (isset($_SESSION['staff']) && $_SESSION['staff']['MAQUYEN'] == 1) {
-            echo '<div style="width: 80%;margin-left: 10%;">
+    <?php
+    if (isset($_SESSION['staff']) && $_SESSION['staff']['MAQUYEN'] == 1) {
+        echo '<div style="width: 80%;margin-left: 10%;">
             <a href="/CuaHangTrangSuc/Admin/GoiYThemSP"><button type="button" class="btn btn-primary btn-lg optionButton">Gợi ý thêm sản phẩm</button></a>
             <button onclick="exportExcel();" type="button" class="btn btn-primary btn-lg optionButton">Xuất Excel</button>
             <div class="form-group" style="width: 50%;float: right;margin-left: 2rem;">
                 <input type="text" class="form-control" id="searchValue" placeholder="Nhập thông tin sản phẩm..." style="float: right;width: 20rem;">
             </div>
         </div>  ';
-        }
+    }
     ?>
-    
+
 
     <div style="width: 80%;margin-left: 10%;margin-top: 1rem;">
         <div class="form-row">
@@ -106,10 +106,17 @@
 
     </div>
 
+    <div style="margin-left: 10%;">
+        <button type="button" class="btn btn-primary" onclick="sortData('GIA','UP');">Giá tăng dần</button>
+        <button type="button" class="btn btn-primary" onclick="sortData('GIA','DOWN');">Giá giảm dần</button>
+        <button type="button" class="btn btn-primary" onclick="sortData('SOLUONG','UP');">Số lượng tăng dần</button>
+        <button type="button" class="btn btn-primary" onclick="sortData('SOLUONG','DOWN');">Số lượng giảm dần</button>
+    </div>
+
     <table id="tableContent" class="table" style="width: 80%;margin-left: 10%;"></table>
 
-     <!-- Thong bao xuat excel thanh cong -->
-     <div id="openExportBill" style="width: 60%;background-color: #007bff; position: absolute; top: 25%; height: auto; padding: 2rem; border-radius: 1rem; color: white;left:20%;font-size: 1.3rem;border: 2px solid black;"></div>
+    <!-- Thong bao xuat excel thanh cong -->
+    <div id="openExportBill" style="width: 60%;background-color: #007bff; position: absolute; top: 25%; height: auto; padding: 2rem; border-radius: 1rem; color: white;left:20%;font-size: 1.3rem;border: 2px solid black;"></div>
 
 
     <script>
@@ -149,7 +156,7 @@
                             '<td>' + ($obj.TRANGTHAI == 1 ? 'Còn  CửaTrong Hàng' : 'Đã Xóa') + '</td>' +
                             '<td>' + $obj.PHANTRAMGIAM + '%</td>';
                         if ($obj.TRANGTHAI == 1) {
-                            $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
+                            $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/' + $obj.MASP + '"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\'' + $obj.MASP + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
                         }
                         $xhtml += '</tr>';
                     }
@@ -225,7 +232,7 @@
                                 '<td>' + ($obj.TRANGTHAI == 1 ? 'Còn Trong Cửa Hàng' : 'Đã Xóa') + '</td>' +
                                 '<td>' + $obj.PHANTRAMGIAM + '%</td>';
                             if ($obj.TRANGTHAI == 1) {
-                                $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
+                                $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/' + $obj.MASP + '"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\'' + $obj.MASP + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
                             }
                             $xhtml += '</tr>';
                         }
@@ -337,7 +344,7 @@
                             '<td>' + ($obj.TRANGTHAI == 1 ? 'Còn Trong Cửa Hàng' : 'Đã Xóa') + '</td>' +
                             '<td>' + $obj.PHANTRAMGIAM + '%</td>';
                         if ($obj.TRANGTHAI == 1) {
-                            $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
+                            $xhtml += '<td><a href="/CuaHangTrangSuc/Admin/SuaSanPham/' + $obj.MASP + '"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\'' + $obj.MASP + '\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
                         }
                         $xhtml += '</tr>';
                     }
@@ -348,22 +355,23 @@
             });
         }
 
-        function deleteElement($idProduct){
-            if(!confirm("Bạn có chắc chắn muốn xóa sản phẩm này không ? Sản phẩm sẽ bị vô hiệu vĩnh viễn khi XÓA")){
+        function deleteElement($idProduct) {
+            if (!confirm("Bạn có chắc chắn muốn xóa sản phẩm này không ? Sản phẩm sẽ bị vô hiệu vĩnh viễn khi XÓA")) {
                 return;
             }
 
             $.ajax({
-                url:'/CuaHangTrangSuc/Admin/disableProductStatus',
-                data :{id:$idProduct},
-                method:'post',
-                success : function(result){
+                url: '/CuaHangTrangSuc/Admin/disableProductStatus',
+                data: {
+                    id: $idProduct
+                },
+                method: 'post',
+                success: function(result) {
                     console.log(result);
-                    if(result == 0){
+                    if (result == 0) {
                         alert("Xóa Sản Phẩm thành công");
                         loadTable();
-                    }
-                    else{
+                    } else {
                         alert("Lỗi khi xóa !!!");
                     }
                 }
@@ -371,6 +379,7 @@
         }
 
         $('#openExportBill').hide();
+
         function exportExcel() {
             $.ajax({
                 url: '/CuaHangTrangSuc/Admin/exportProductToExcel',
@@ -394,6 +403,72 @@
         //open file
         function openfile(file) {
             window.location = file;
+        }
+
+        function sortData($param,$type){
+            $.ajax({
+                url: '/CuaHangTrangSuc/Admin/getAllProduct',
+                success: function(data) {
+                    var data = JSON.parse(data);
+                    $xhtml = '<thead>' +
+                        '<tr>' +
+                        '<th scope="col">#</th>' +
+                        '<th scope="col">Mã Sản Phẩm</th>' +
+                        '<th scope="col" style="width: 20rem;">Tên Sản Phẩm</th>' +
+                        '<th scope="col">Loại</th>' +
+                        '<th scope="col">Giá</th>' +
+                        '<th scope="col">Số Lượng</th>' +
+                        '<th scope="col" style="width: 10rem;">Hình Ảnh</th>' +
+                        '<th scope="col">Trạng Thái</th>' +
+                        '<th scope="col">% Giảm</th>' +
+                        '<th scope="col" style="width: 15rem;">Chức Năng</th>' +
+                        '</tr>' +
+                        '</thead><tbody>';
+
+
+                    // sort data
+                    for(var i = 0;i < data.length-1;i++){
+                        for(var j = i+1;j < data.length;j++){
+                            if($type == 'UP'){
+                                if(parseInt(data[i][$param]) > parseInt(data[j][$param])){
+                                    var tmp = data[i];
+                                    data[i] = data[j];
+                                    data[j] = tmp;
+                                }
+                            }
+                            else{
+                                if(parseInt(data[i][$param]) < parseInt(data[j][$param])){
+                                    var tmp = data[i];
+                                    data[i] = data[j];
+                                    data[j] = tmp;
+                                }
+                            }
+                        }
+                    }
+
+                    $count = 1;
+                    for (var key in data) {
+                        $obj = data[key];
+                        $xhtml += '<tr>' +
+                            '<th scope="row">' + ($count++) + '</th>' +
+                            '<td>' + $obj.MASP + '</td>' +
+                            '<td>' + $obj.TENSP + '</td>' +
+                            '<td>' + $obj.MALOAI + '</td>' +
+                            '<td>' + formatter.format($obj.GIA) + '</td>' +
+                            '<td>' + $obj.SOLUONG + '</td>' +
+                            '<td><img src="/CuaHangTrangSuc/public/image/HINHANH/' + $obj.HINHANH + '" alt="empty_Image" style="width: 10rem;height:8rem;"></td>' +
+                            '<td>' + ($obj.TRANGTHAI == 1 ? 'Còn  CửaTrong Hàng' : 'Đã Xóa') + '</td>' +
+                            '<td>' + $obj.PHANTRAMGIAM + '%</td>';
+                        if ($obj.TRANGTHAI == 1) {
+                            $xhtml += '<td><a href="/CuaHangNoiThat/Admin/SuaSanPham/'+$obj.MASP+'"><button class="btn btn-primary btnControl" type="submit" style="background-color: green;">Sửa sản phẩm</button></a><button onclick="deleteElement(\''+$obj.MASP+'\');" class="btn btn-primary btnControl" type="submit" style="background-color: red;margin-top: 1rem;">Xóa Sản phẩm</button></td>';
+                        }
+                        $xhtml += '</tr>';
+                    }
+
+                    $xhtml += '</tbody>';
+                    $("#tableContent").html($xhtml);
+                }
+            });
         }
     </script>
 

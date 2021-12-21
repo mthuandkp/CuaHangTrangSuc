@@ -250,7 +250,7 @@
             return;
         }
         $.ajax({
-            url: '/CuaHangNoiThat/Admin/addToCart/' + $productId,
+            url: '/CuaHangTrangSuc/Admin/addToCart/' + $productId,
             success: function(data) {
                 var data = JSON.parse(data);
                 alert(data.SMS);
@@ -261,7 +261,7 @@
 
     function loadCountCart() {
         $.ajax({
-            url: '/CuaHangNoiThat/Admin/countCart',
+            url: '/CuaHangTrangSuc/Admin/countCart',
             success: function(data) {
                 var data = JSON.parse(data);
                 $("#counter").html(data.COUNT)

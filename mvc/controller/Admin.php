@@ -123,7 +123,7 @@ class Admin extends Controller
         echo json_encode($data);
     }
 
-    function updateBillStatus()
+    function updateBillStatus($status='TT02')
     {
 
         if (!isset($_POST['id'])) {
@@ -131,8 +131,9 @@ class Admin extends Controller
             return;
         }
         $id = $_POST['id'];
+        $idStaff = $_SESSION['staff']['MANV'];
         $objBill = $this->getModel("HoaDonDB");
-        if ($objBill->updateBillStatus($id)) {
+        if ($objBill->updateBillStatus($id,$idStaff,$status)) {
             echo 0;
             return;
         }

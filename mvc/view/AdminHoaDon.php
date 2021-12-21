@@ -249,6 +249,9 @@
         });
         // Bat su kien xac nhan hoa don
         function confirmBill($id) {
+            if(!confirm("Bạn có chăc chắn xác nhận hóa đơn này không ?")){
+                return;
+            }
             $.ajax({
                 url: '/CuaHangTrangSuc/Admin/updateBillStatus',
                 data: {

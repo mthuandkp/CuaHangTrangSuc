@@ -165,9 +165,9 @@ class HoaDonDB extends ConnectionDB
         return false;
     }
 
-    function updateBillStatus($id)
+    function updateBillStatus($id,$idStaff,$Status)
     {
-        $qry = "UPDATE `hoadon` SET `MATRANGTHAI`='TT02' WHERE `MAHD`='$id';";
+        $qry = "UPDATE `hoadon` SET `MATRANGTHAI`='$Status',`MANV`='$idStaff' WHERE `MAHD`='$id';";
         if (mysqli_query($this->conn, $qry)) {
             return true;
         }
