@@ -1,4 +1,3 @@
-
 <html lang="en">
 
 <head>
@@ -62,12 +61,12 @@
                     <div class="dropdown-bell-content">
 
                         <?php
-                            $listSalePro = $data['data_sale'];
-                            foreach($listSalePro as $value){
-                                echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
-                                <div style="text-align: center;color: red;">Sản phẩm <b>'.$value['TENSP'].'</b> đang được giảm <b>'.$value['PHANTRAMGIAM'].'%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/'.$value['MASP'].'" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
+                        $listSalePro = $data['data_sale'];
+                        foreach ($listSalePro as $value) {
+                            echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
+                                <div style="text-align: center;color: red;">Sản phẩm <b>' . $value['TENSP'] . '</b> đang được giảm <b>' . $value['PHANTRAMGIAM'] . '%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
                             </div>';
-                            }
+                        }
 
                         ?>
                     </div>
@@ -87,10 +86,7 @@
                                 echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
                                     <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
                             }
-                        ?>
-                        
-                       
-                        
+                        ?>                        
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -136,48 +132,59 @@
     <div>
         <!--best-seller-product------------------------------------------------------->
         <h2 class="content">
-            <span> SẢN PHẨM NỖI BẬT</span>
+            <span> TẤT CẢ SẢN PHẨM</span>
         </h2>
     </div>
     <div class="product-box">
         <?php
         $listPro = $data['data'];
-        foreach ($listPro as $value) {
-            echo '<div class="product-item">
-                <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '">
-                    <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $value['HINHANH'] . '" alt="">
-                    <i class="fa fa-search"></i>    
-                    <div class="product-name"> ' . $value['TENSP'] . '</div>
-                </a>
-                <div class="price">' . number_format($value['GIA']) . 'đ</div>
-                <div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $value['MASP'] . '\');"></div>
-            </div>';
+        $start = ($data['page'] - 1) * 10;
+
+
+        if ($start < count($listPro)) {
+            $end = ($start + 10) > count($listPro) ? count($listPro) : ($start + 10);
+            for ($i = $start; $i < $end; $i++) {
+                echo '<div class="product-item">
+                    <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $listPro[$i]['MASP'] . '">
+                        <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $listPro[$i]['HINHANH'] . '" alt="">
+                        <i class="fa fa-search"></i>    
+                        <div class="product-name"> ' . $listPro[$i]['TENSP'] . '</div>
+                    </a>';
+                if ($listPro[$i]['PHANTRAMGIAM'] == 0) {
+                    echo '<div class="price">' . number_format($listPro[$i]['GIA']) . 'đ</div>';
+                } else {
+                    echo '<div class="price"><b>' . number_format($listPro[$i]['GIA'] * (1 - $listPro[$i]['PHANTRAMGIAM'] / 100)) . 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' . number_format($listPro[$i]['GIA']) . 'đ</b></div>';
+                }
+                echo '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $listPro[$i]['MASP'] . '\');"></div>
+                </div>';
+            }
         }
+
+
         ?>
     </div>
-
-
-
-    <!--new-product------------------------------------------------------->
-    <h2 class="content">
-        <span> SẢN PHẨM MỚI</span>
-    </h2>
-    <div class="product-box">
+    <div class="pagination">
         <?php
-        $listPro = $data['data2'];
-        foreach ($listPro as $value) {
-            echo '<div class="product-item">
-                <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '">
-                    <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $value['HINHANH'] . '" alt="">
-                    <i class="fa fa-search"></i>    
-                    <div class="product-name"> ' . $value['TENSP'] . '</div>
-                </a>
-                <div class="price">' . number_format($value['GIA']) . 'đ</div>
-                <div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $value['MASP'] . '\');"></div>
-            </div>';
+        $listPro = $data['data'];
+        $numberpage = count($listPro) % 10 == 0 ? count($listPro) / 10 : (int)(count($listPro) / 10) + 1;
+
+        for ($i = 0; $i < $numberpage; $i++) {
+            if ($i + 1 == $data['page']) {
+                echo '<strong class="current-page page-item">' . ($i + 1) . '</strong>';
+            } else {
+                echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
+            }
         }
+
+        if ($data['page'] != $numberpage) {
+            echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
+        }
+
+        echo '<a class="page-item" href="/CuaHangTrangSuc/SanPham/Pages/' . $numberpage . '">Last</a>';
         ?>
+
     </div>
+
     <!--offer img------------------------------------------------------->
     <div class="offer-img">
         <div class="offer">

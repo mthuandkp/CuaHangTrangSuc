@@ -23,6 +23,26 @@ class SanPhamDB extends ConnectionDB
         }
         return $data;
     }
+
+    //Lay tat ca sanpham
+    function getProductRandom($number = 5)
+    {
+        $data = $this->getAllProduct();
+        $result = array();
+        //Filter product
+        while($number > 0 && count($data) > 0){
+            $rdKey = array_rand($data);
+            if($data[$rdKey]['TRANGTHAI'] == 1){
+                $result[] = $data[$rdKey];
+                $number--;
+            }
+            else{
+                unset($data[$rdKey]);
+            }
+        }
+        return $result;
+       
+    }
     //Tao ma sanpham tiep theo
     function createNextProductId()
     {
@@ -30,6 +50,15 @@ class SanPhamDB extends ConnectionDB
     //Lay sanpham theo maloai
     function getProductByTypeId($typeId)
     {
+        $qry = "SELECT * FROM `trangsuc`;";
+        $data = array();
+        $rs = mysqli_query($this->conn, $qry);
+        while ($row = mysqli_fetch_assoc($rs)) {
+            if($row['MALOAI'] == $typeId){
+                $data[] = $row;
+            }
+        }
+        return $data;
     }
 
     //Them san pham moi
@@ -106,6 +135,17 @@ class SanPhamDB extends ConnectionDB
             return true;
         }
         return false;
+    }
+
+    function getSaleProduct(){
+        $data = $this->getAllProduct();
+        $result = array();
+        foreach($data as $value){
+            if($value['PHANTRAMGIAM'] != 0){
+                $result[] = $value;
+            }
+        }
+        return $result;
     }
 
     function exportExcel()

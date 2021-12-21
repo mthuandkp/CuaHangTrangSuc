@@ -3,7 +3,14 @@ class TrangChu extends Controller
 {
     function display()
     {
-        $this->View('TrangChu');
+        $objProduct = $this->getModel('SanPhamDB');
+        $listProduct = $objProduct->getProductRandom(5);
+        $data = array(
+            'data'=>$listProduct,
+            'data2'=>$objProduct->getProductRandom(5),
+            'data_sale'=>$objProduct->getSaleProduct()
+        );
+        $this->View('TrangChu','Trang Chủ',$data);
     }
 
     function Logout()
@@ -24,6 +31,13 @@ class TrangChu extends Controller
     }
 
     function DoiMatKhau(){
-        $this->View("DoiMatKhau");
+        $objProduct = $this->getModel('SanPhamDB');
+        $listProduct = $objProduct->getProductRandom(5);
+        $data = array(
+            'data'=>$listProduct,
+            'data2'=>$objProduct->getProductRandom(5),
+            'data_sale'=>$objProduct->getSaleProduct()
+        );
+        $this->View("DoiMatKhau",'Đổi mật khẩu',$data);
     }
 }

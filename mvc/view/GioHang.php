@@ -11,64 +11,86 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/CuaHangTrangSuc/my-css.css">
+    <link rel="stylesheet" href="/CuaHangTrangSuc/usercss.css">
     <script src="/CuaHangTrangSuc/processFunc.js"></script>
 
     <title>Giỏ Hàng</title>
 </head>
 
 <body>
-<div class="header">
-        <div class="address">
-            <i class="fa fa-map-marker"> Hồ Chí Minh, Việt Nam</i>
-            <i class="fa fa-envelope"> infinity@gmail.com</i>
-        </div>
+<div class="top-header">
+        <p>-~ YOUR LIFE YOUR STYLE ~-</p>
     </div>
-    <nav class="navbar sticky-top navbar-expand-md navbar-light ">
+
+    <nav class="navbar sticky-top navbar-expand-md navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navar-branch" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangChu">
-                <img src="/CuaHangTrangSuc/public/image/logo.png" alt="logo" height="60px">
+            <a class="navar-branch" style="cursor: pointer;" href="/CuaHangTrangSuc">
+                <img src="/CuaHangTrangSuc/public/image/logo.png" alt="logo" height="45px">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav mx-auto " id="lsp">
-                    <li class="nav-item active">
-                        <a class="nav-link a active" style="cursor: pointer;" href="/CuaHangTrangSuc/TrangChu">TRANG CHỦ</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="cursor: pointer;" href="/CuaHangTrangSuc">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/VongTay">vÒNG TAY</a>
+                        <a class="nav-link" style="cursor: pointer;" href="/CuaHangTrangSuc/SanPham/Pages/1">SẢN PHẨM</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/DayChuyen">DÂY CHUYỀN</a>
+                        <a class="nav-link" style="cursor: pointer;" href="/CuaHangTrangSuc/VongTay/Pages/1">VÒNG TAY</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/KhuyenTai">KHUYÊN TAI</a>
+                        <a class="nav-link" style="cursor: pointer;" href="/CuaHangTrangSuc/DayChuyen/Pages/1">DÂY CHUYỀN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link a" style="cursor: pointer;" href="/CuaHangTrangSuc/Nhan">NHẪN</a>
+                        <a class="nav-link" style="cursor: pointer;" href="/CuaHangTrangSuc/KhuyenTai/Pages/1">KHUYÊN TAI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" style="cursor: pointer;" href="/CuaHangTrangSuc/Nhan/Pages/1">NHẪN</a>
                     </li>
                 </ul>
-            </div>
-            <?php if (isset($_SESSION['account'])) {
-                echo "<div style='margin-top:2rem;'> Hello ," . $_SESSION['account']['TENKH'] . '</div>';
-            } ?>
 
+            </div>
             <div class="user-nav">
-                <div class="dropdown">
-                    <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
-                    <div class="dropdown-content user" style="margin-top: -0.5rem;">
+                <p style="float: left;font-size: 12px">
+                    ADMIN
+                </p>
+                <div class="dropdown-bell">
+                    <i class="fa fa-bell"></i>
+                    <div class="dropdown-bell-content">
+
                         <?php
-                        if (!isset($_SESSION['account'])) {
-                            echo '<a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>';
-                            echo '<a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                        } else {
-                            echo '<a href="/CuaHangTrangSuc/ThayDoiThongTin">Thay đổi thông tin</a>
-                                <a href="/CuaHangTrangSuc/DoiMatKhau">Đổi mật khẩu</a>
-                                <a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
-                                <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                        }
+                            $listSalePro = $data['data_sale'];
+                            foreach($listSalePro as $value){
+                                echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
+                                <div style="text-align: center;color: red;">Sản phẩm <b>'.$value['TENSP'].'</b> đang được giảm <b>'.$value['PHANTRAMGIAM'].'%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/'.$value['MASP'].'" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
+                            </div>';
+                            }
+
                         ?>
+                    </div>
+                </div>
+
+
+                <div class="dropdown-user">
+                    <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
+                    <div class="dropdown-user-content">
+                        <?php
+                            if(isset($_SESSION['account'])){
+                                echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
+                                    <a href="/CuaHangTrangSuc/TrangChu/DoiMatKhau">Đổi mật khẩu</a>
+                                    <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
+                            }
+                            else{
+                                echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
+                                    <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
+                            }
+                        ?>
+                        
+                       
+                        
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -92,7 +114,7 @@
         <span>GIỎ HÀNG</span>
     </h2><br>
     <div style="width: 80%;margin-left: 10%;">
-        <table style="width: 100%;" class="shopping-cart" id="shopping-cart-id"></table>
+        <table style="width: 100%;" class="table" id="shopping-cart-id"></table>
     </div>
     <div class="footer-container">
         <div class="footer">
@@ -135,22 +157,22 @@
                         $obj = data[key];
                         $sum += $obj.GIA * (1 - $obj.PHANTRAMGIAM / 100) * $obj.amount;
                         $xhtml += '<tr>' +
-                            '<td><img src="/CuaHangTrangSuc/public/image/HINHANH/' + $obj.HINHANH + '" alt=""></td>' +
+                            '<td><img style="width:5rem;height:5rem;" src="/CuaHangTrangSuc/public/image/HINHANH/' + $obj.HINHANH + '" alt=""></td>' +
                             '<td>' +
                             '<p style="margin: 0;">' + $obj.TENSP + ' (-' + $obj.PHANTRAMGIAM + '%)</p>' +
                             '</td>' +
                             '<td>';
 
                         if ($obj.PHANTRAMGIAM == 0) {
-                            $xhtml += '<div class="price">' + formatter.format($obj.GIA) + ' <sup>đ</sup></div>';
+                            $xhtml += '<div>' + formatter.format($obj.GIA) + ' <sup>đ</sup></div>';
                         } else {
-                            $xhtml += '<div class="price">' + formatter.format($obj.GIA * (1 - $obj.PHANTRAMGIAM / 100)) + ' <sup>đ</sup></div>';
-                            $xhtml += '<div style="text-decoration: line-through;" class="price">' + formatter.format($obj.GIA) + ' <sup>đ</sup></div>';
+                            $xhtml += '<div>' + formatter.format($obj.GIA * (1 - $obj.PHANTRAMGIAM / 100)) + ' <sup>đ</sup></div>';
+                            $xhtml += '<div style="text-decoration: line-through;" >' + formatter.format($obj.GIA) + ' <sup>đ</sup></div>';
                         }
                         $xhtml += '</td>' +
                             '<td><input id="number-product-item-' + $obj.MASP + '" type="number" onchange="changeNumberCart(\'' + $obj.MASP + '\');" placeholder="1" class="number" value="' + $obj.amount + '"><i class="fa fa-trash" onclick="deleteCartItem(\'' + $obj.MASP + '\')"></i><p style="color:red;">' + $obj.ERROR + '</p></td>' +
                             '<td>' +
-                            '<div class="price">' + formatter.format($obj.GIA * (1 - $obj.PHANTRAMGIAM / 100) * $obj.amount) + ' <sup>đ</sup></div>' +
+                            '<div>' + formatter.format($obj.GIA * (1 - $obj.PHANTRAMGIAM / 100) * $obj.amount) + ' <sup>đ</sup></div>' +
                             '</td>' +
                             '</tr>';
                     }
@@ -172,21 +194,6 @@
                                     '</tr>';
 
                             } else {
-                                /*$xhtml += '<tr>' +
-                                '<td colspan="3">' +
-                                '</td>' +
-                                '<td colspan="2" style="text-align: end;">' +
-                                '<div class="total-price" style="text-decoration: line-through;">' +
-                                formatter.format($sum) + '<sup>đ</sup>' +
-                                '</div>' +
-                                '<div class="total-price">' +
-                                formatter.format($sum*(1-subdata.PHANTRAMGIAM/100)) + ' (-'+subdata.PHANTRAMGIAM+'%)<sup>đ</sup>' +
-                                '</div><p>(' +subdata.NGAYBD+' đến '+subdata.NGAYKT+')</p>' +
-                                '<p style="font-size: 12px;">Tiền vận chuyển tính khi thanh toán</p>' +
-                                '<input type="button" onclick="orderCart();" value="ĐẶT HÀNG" class="cart-btn">' +
-                                '</td>' +
-                                '</tr>';*/
-
                                 $xhtml += '<tr>' +
                                     '<td>Tổng</td>' +
                                     '<td></td>' +
