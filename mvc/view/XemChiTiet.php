@@ -55,8 +55,13 @@
 
             </div>
             <div class="user-nav">
-                <p style="float: left;font-size: 12px">
-                    ADMIN
+                <p style="float: left;font-size: 20px">
+                    <?php
+                    if (isset($_SESSION['account'])) {
+                        $user = $_SESSION['account'];
+                        echo 'Xin chào, ' . $user['TENKH'];
+                    }
+                    ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>
@@ -126,10 +131,10 @@
             </tr>
         </thead>
         <tbody>
-        <?php
-        $sumSale = 0;
-        foreach ($data['data']['detail'] as $value) {
-            echo '<tr>
+            <?php
+            $sumSale = 0;
+            foreach ($data['data']['detail'] as $value) {
+                echo '<tr>
                 <td>' . $value['TENSP'] . '</td>
                 <td><img src="/CuaHangTrangSuc/public/image/HINHANH/' . $value['HINHANH'] . '" alt="no image" style="width: 15rem;height:10rem;"></td>
                 <td>' . number_format($value['GIA']) . ' VNĐ</td>
@@ -138,29 +143,29 @@
                 <td> - ' . number_format($value['GIA'] * ($value['PHANTRAMGIAM'] / 100)) . ' VNĐ (' . $value['PHANTRAMGIAM'] . '%) x ' . $value['SOLUONG'] . '</td>
                 <th>' . number_format($value['GIA'] * (1 - $value['PHANTRAMGIAM'] / 100) * $value['SOLUONG']) . ' VNĐ</th>
             </tr>';
-            $sumSale += $value['GIA'] * (1 - $value['PHANTRAMGIAM'] / 100) * $value['SOLUONG'];
-        }
-        ?>
+                $sumSale += $value['GIA'] * (1 - $value['PHANTRAMGIAM'] / 100) * $value['SOLUONG'];
+            }
+            ?>
 
-        <tr style="height: 5rem;">
-            <td></td>
-        </tr>
-        <tr>
-            <th>Tổng:</th>
-            <td colspan="5"></td>
-            <th><?php echo number_format($sumSale) ?> VNĐ</th>
-        </tr>
-        <tr>
-            <th>Giảm Khuyến Mãi :</th>
-            <td colspan="4"></td>
-            <td>-<?php echo $data['data']['sale']['PHANTRAMGIAM'] . '% (' . $data['data']['sale']['MAKM'] . ')'; ?></td>
-            <th> - <?php echo number_format($sumSale * ($data['data']['sale']['PHANTRAMGIAM'] / 100)) ?> VNĐ</th>
-        </tr>
-        <tr>
-            <th>Thành Tiền :</th>
-            <td colspan="5"></td>
-            <th><?php echo number_format($sumSale * (1 - $data['data']['sale']['PHANTRAMGIAM'] / 100)) ?> VNĐ</th>
-        </tr>
+            <tr style="height: 5rem;">
+                <td></td>
+            </tr>
+            <tr>
+                <th>Tổng:</th>
+                <td colspan="5"></td>
+                <th><?php echo number_format($sumSale) ?> VNĐ</th>
+            </tr>
+            <tr>
+                <th>Giảm Khuyến Mãi :</th>
+                <td colspan="4"></td>
+                <td>-<?php echo $data['data']['sale']['PHANTRAMGIAM'] . '% (' . $data['data']['sale']['MAKM'] . ')'; ?></td>
+                <th> - <?php echo number_format($sumSale * ($data['data']['sale']['PHANTRAMGIAM'] / 100)) ?> VNĐ</th>
+            </tr>
+            <tr>
+                <th>Thành Tiền :</th>
+                <td colspan="5"></td>
+                <th><?php echo number_format($sumSale * (1 - $data['data']['sale']['PHANTRAMGIAM'] / 100)) ?> VNĐ</th>
+            </tr>
         </tbody>
     </table>
     <div class="footer-container">

@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<div class="top-header">
+    <div class="top-header">
         <p>-~ YOUR LIFE YOUR STYLE ~-</p>
     </div>
 
@@ -52,20 +52,25 @@
 
             </div>
             <div class="user-nav">
-                <p style="float: left;font-size: 12px">
-                    ADMIN
+                <p style="float: left;font-size: 20px">
+                    <?php
+                    if (isset($_SESSION['account'])) {
+                        $user = $_SESSION['account'];
+                        echo 'Xin chào, ' . $user['TENKH'];
+                    }
+                    ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>
                     <div class="dropdown-bell-content">
 
                         <?php
-                            $listSalePro = $data['data_sale'];
-                            foreach($listSalePro as $value){
-                                echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
-                                <div style="text-align: center;color: red;">Sản phẩm <b>'.$value['TENSP'].'</b> đang được giảm <b>'.$value['PHANTRAMGIAM'].'%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/'.$value['MASP'].'" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
+                        $listSalePro = $data['data_sale'];
+                        foreach ($listSalePro as $value) {
+                            echo '<div style="width: 90%;margin-left: 5%;margin-top: 1rem;background-color: #ffed2b;border-radius: 0.5rem;font-size: 1.25rem;">
+                                <div style="text-align: center;color: red;">Sản phẩm <b>' . $value['TENSP'] . '</b> đang được giảm <b>' . $value['PHANTRAMGIAM'] . '%</b> tại cửa hàng <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $value['MASP'] . '" style="color: #00a2ff;font-size: 1.5rem;font-weight: 900;">Xem ngay</a></div>
                             </div>';
-                            }
+                        }
 
                         ?>
                     </div>
@@ -76,19 +81,18 @@
                     <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
                     <div class="dropdown-user-content">
                         <?php
-                            if(isset($_SESSION['account'])){
-                                echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
+                        if (isset($_SESSION['account'])) {
+                            echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/DoiMatKhau">Đổi mật khẩu</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                            }
-                            else{
-                                echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
+                        } else {
+                            echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
                                     <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                            }
+                        }
                         ?>
-                        
-                       
-                        
+
+
+
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -159,11 +163,10 @@
                 } else if ($result === "WRONG_PASSWORD") {
                     $("#errorMessage").html("Mật khẩu không chính xác");
                     $("#errorMessage").show();
-                } else if($result === 'BLOCK'){
+                } else if ($result === 'BLOCK') {
                     $("#errorMessage").html("Tài khoản bạn đã bị khóa. Vui lòng liên hệ mildstore@gmail.com để biết thêm chi tiết");
                     $("#errorMessage").show();
-                }
-                 else {
+                } else {
                     window.location.href = "./" + data.URL;
                 }
             }

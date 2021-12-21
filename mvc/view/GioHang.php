@@ -54,8 +54,13 @@
 
             </div>
             <div class="user-nav">
-                <p style="float: left;font-size: 12px">
-                    ADMIN
+            <p style="float: left;font-size: 20px">
+                <?php
+                    if(isset($_SESSION['account'])){
+                        $user = $_SESSION['account'];
+                        echo 'Xin chào, '.$user['TENKH'];
+                    }
+                ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>
@@ -170,7 +175,7 @@
                             $xhtml += '<div style="text-decoration: line-through;" >' + formatter.format($obj.GIA) + ' <sup>đ</sup></div>';
                         }
                         $xhtml += '</td>' +
-                            '<td><input id="number-product-item-' + $obj.MASP + '" type="number" onchange="changeNumberCart(\'' + $obj.MASP + '\');" placeholder="1" class="number" value="' + $obj.amount + '"><i class="fa fa-trash" onclick="deleteCartItem(\'' + $obj.MASP + '\')"></i><p style="color:red;">' + $obj.ERROR + '</p></td>' +
+                            '<td><input style="min-width:1rem;" id="number-product-item-' + $obj.MASP + '" type="number" onchange="changeNumberCart(\'' + $obj.MASP + '\');" placeholder="1" class="number" value="' + $obj.amount + '"><i class="fa fa-trash" onclick="deleteCartItem(\'' + $obj.MASP + '\')"></i><p style="color:red;">' + $obj.ERROR + '</p></td>' +
                             '<td>' +
                             '<div>' + formatter.format($obj.GIA * (1 - $obj.PHANTRAMGIAM / 100) * $obj.amount) + ' <sup>đ</sup></div>' +
                             '</td>' +

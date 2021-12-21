@@ -53,8 +53,13 @@
 
             </div>
             <div class="user-nav">
-                <p style="float: left;font-size: 12px">
-                    ADMIN
+                <p style="float: left;font-size: 20px">
+                <?php
+                    if(isset($_SESSION['account'])){
+                        $user = $_SESSION['account'];
+                        echo 'Xin chào, '.$user['TENKH'];
+                    }
+                ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>

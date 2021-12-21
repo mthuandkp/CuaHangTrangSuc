@@ -53,8 +53,13 @@
 
             </div>
             <div class="user-nav">
-                <p style="float: left;font-size: 12px">
-                    ADMIN
+                <p style="float: left;font-size: 20px">
+                    <?php
+                    if (isset($_SESSION['account'])) {
+                        $user = $_SESSION['account'];
+                        echo 'Xin chào, ' . $user['TENKH'];
+                    }
+                    ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>
@@ -77,16 +82,15 @@
                     <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
                     <div class="dropdown-user-content">
                         <?php
-                            if(isset($_SESSION['account'])){
-                                echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
+                        if (isset($_SESSION['account'])) {
+                            echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/DoiMatKhau">Đổi mật khẩu</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                            }
-                            else{
-                                echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
+                        } else {
+                            echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
                                     <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                            }
-                        ?>                        
+                        }
+                        ?>
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -136,34 +140,34 @@
         </h2>
     </div>
     <div class="products">
-    <div class="product-box">
-        <?php
-        $listPro = $data['data'];
-        $start = ($data['page'] - 1) * 8;
-        if ($start < count($listPro)) {
-            $end = ($start + 8) > count($listPro) ? count($listPro) : ($start + 8);
-            for ($i = $start; $i < $end; $i++) {
-                echo '<div class="product-item">
+        <div class="product-box">
+            <?php
+            $listPro = $data['data'];
+            $start = ($data['page'] - 1) * 8;
+            if ($start < count($listPro)) {
+                $end = ($start + 8) > count($listPro) ? count($listPro) : ($start + 8);
+                for ($i = $start; $i < $end; $i++) {
+                    echo '<div class="product-item">
                     <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $listPro[$i]['MASP'] . '">
                         <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $listPro[$i]['HINHANH'] . '" alt="">
                         <i class="fa fa-search"></i>    
                         <div class="product-name"> ' . $listPro[$i]['TENSP'] . '</div>
                     </a>';
-                if ($listPro[$i]['PHANTRAMGIAM'] == 0) {
-                    echo '<div class="price">' . number_format($listPro[$i]['GIA']) . 'đ</div>';
-                } else {
-                    echo '<div class="price"><b>' . number_format($listPro[$i]['GIA'] * (1 - $listPro[$i]['PHANTRAMGIAM'] / 100)) . 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' . number_format($listPro[$i]['GIA']) . 'đ</b></div>';
-                }
-                echo '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $listPro[$i]['MASP'] . '\');"></div>
+                    if ($listPro[$i]['PHANTRAMGIAM'] == 0) {
+                        echo '<div class="price">' . number_format($listPro[$i]['GIA']) . 'đ</div>';
+                    } else {
+                        echo '<div class="price"><b>' . number_format($listPro[$i]['GIA'] * (1 - $listPro[$i]['PHANTRAMGIAM'] / 100)) . 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' . number_format($listPro[$i]['GIA']) . 'đ</b></div>';
+                    }
+                    echo '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $listPro[$i]['MASP'] . '\');"></div>
                 </div>';
+                }
             }
-        }
 
 
-        ?>
+            ?>
+        </div>
     </div>
-    </div>
-    
+
     <div class="pagination">
         <?php
         $listPro = $data['data'];
@@ -186,7 +190,7 @@
 
     </div>
 
-   
+
     <!--footer------------------------------------------------------->
     <div class="flex-container">
         <div class="flex1"><i class="fa fa-plane" style="font-size:35px;float: left; padding: 0 8px;"></i>
