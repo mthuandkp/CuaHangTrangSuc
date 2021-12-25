@@ -1,0 +1,15 @@
+TRƯỜNG ĐẠI HỌC SÀI GÒN
+KHOA CÔNG NGHỆ THÔNG TIN
+MÔN: CÔNG NGHỆ PHẦN MỀM
+
+Chủ đề: XÂY DỰNG WEBSITE BÁN TRANG SỨC
+GIẢNG VIÊN HƯỚNG DẪN: CÔ PHAN NGUYỆT MINH
+
+Thành viên nhóm 31:
+
+3119560031 Võ Anh Khoa
+3119560070 Phạm Nguyễn Minh Thuận
+3119560027 Đỗ Nhỉ Khang
+3119560085 Hoàng Hà Vy
+3119560058 Trần Ngọc Sáng
+3119410197 Võ Văn Khoa
