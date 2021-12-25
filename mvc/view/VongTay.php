@@ -181,7 +181,7 @@
 
         </div>
     </div>
-    <button style="background-color:red;color:white;font-size:1.5rem;border-radius: 0.5rem;margin-left: 10%;display: none;" onclick="displayViewAll()" id="view-all_product">Hiển thị tất cả</button>
+    <button style="background-color:#1499ff;color:white;font-size:1.3rem;border-radius: 0.5rem;margin-left: 10%;display: none;padding:0 1rem 0 1rem;" onclick="displayViewAll()" id="view-all_product">Hiển thị tất cả</button>
     <div class="products">
         <div class="product-box" id="product-box">
             <?php
