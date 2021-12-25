@@ -142,8 +142,51 @@
             <span> DÂY CHUYỀN</span>
         </h2>
     </div>
+    <div style="width: 80%;margin-left: 10%;margin-top: 1rem;">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Tên sản phẩm</label>
+                </div>
+                <input type="text" class="form-control" id="inputProductName" placeholder="Tên sản phẩm">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Giá sản phẩm</label>
+                </div>
+                <input type="number" class="form-control" id="inputMinProductPrice" placeholder="Giá thất nhất">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck" style="color: white;">Giá cao nhất</label>
+                </div>
+                <input type="number" class="form-control" id="inputMaxProductPrice" placeholder="Giá cao nhất">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Sắp xếp giá</label>
+                </div>
+                <select class="form-control" id="inputSortProduct">
+                    <option value="">Không sắp xếp</option>
+                    <option value="1">Tăng dần</option>
+                    <option value="0">Giảm dần</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Tìm kiếm</label>
+                </div>
+                <button onclick="searchProduct();" style="width: 15rem;float: right;font-size: 1.2rem;font-weight: bolder;" class="btn btn-primary">Tìm kiếm </button>
+            </div>
+
+
+
+        </div>
+    </div>
+    <button style="background-color:red;color:white;font-size:1.5rem;border-radius: 0.5rem;margin-left: 10%;display: none;" onclick="displayViewAll()" id="view-all_product">Hiển thị tất cả</button>
     <div class="products">
-        <div class="product-box">
+        <div class="product-box" id="product-box">
             <?php
             $listPro = $data['data'];
             $start = ($data['page'] - 1) * 8;
@@ -263,6 +306,105 @@
                 $("#counter").html(data.COUNT)
             }
         })
+    }
+
+    function searchProduct() {
+        //Kiem tra input
+        var name = convertStringToEnglish($("#inputProductName").val());
+        var smallPrice = $("#inputMinProductPrice").val()
+        var bigPrice = $("#inputMaxProductPrice").val();
+        var sort = $("#inputSortProduct").val();
+
+        //Kiem tra du lieu dau vao
+        if (smallPrice != '') {
+            smallPrice = parseInt(smallPrice);
+            if (smallPrice < 0) {
+                alert("Giá thấp nhất phải lớn hơn 0");
+                return;
+            }
+
+            if (bigPrice != '') {
+                bigPrice = parseInt(bigPrice);
+                if (bigPrice < smallPrice) {
+                    alert("Giá cao nhất phải lớn hơn giá thấp nhất");
+                    return;
+                }
+            }
+        } else if (bigPrice != '') {
+            bigPrice = parseInt(bigPrice);
+            if (bigPrice < 0) {
+                alert("Giá cao nhất phải lớn hơn 0");
+                return;
+            }
+
+        }
+
+
+
+        var phpData = (<?php echo json_encode($data) ?>)
+        var data = phpData.data
+
+
+        //Sap xep data
+        if (sort != '') {
+            sort = parseInt(sort)
+            if (sort == 0) {
+                for (var i = 0; i < data.length - 1; i++) {
+                    for (var j = i+1; j < data.length - 1; j++) {
+                        if(parseInt(data[i].GIA) < parseInt(data[j].GIA)){
+                            var tmp = data[i];
+                            data[i] = data[j]
+                            data[j] = tmp
+                        }
+                    }
+                }
+            } else if (sort == 1) {
+                for (var i = 0; i < data.length - 1; i++) {
+                    for (var j = i+1; j < data.length - 1; j++) {
+                        if(parseInt(data[i].GIA) > parseInt(data[j].GIA)){
+                            var tmp = data[i];
+                            data[i] = data[j]
+                            data[j] = tmp
+                        }
+                    }
+                }
+            }
+        }
+        var xhtml = "";
+        
+        for (var key in data) {
+            
+            var obj = data[key];
+            if(name != '' && !(convertStringToEnglish(obj.TENSP)).includes(name)){
+                continue;
+            }
+            if(smallPrice != '' && smallPrice > obj.GIA){
+                continue;
+            }
+            if(bigPrice != '' && bigPrice < obj.GIA){
+                continue;
+            }
+            xhtml += '<div class="product-item">'+
+                    '<a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' + obj.MASP + '">'+
+                        '<img src="/CuaHangTrangSuc/public/image/HINHANH/' + obj.HINHANH+ '" alt="">'+
+                        '<i class="fa fa-search"></i>'+    
+                        '<div class="product-name"> ' + obj.TENSP + '</div>'+
+                    '</a>';
+                    if (parseInt(obj.PHANTRAMGIAM) == 0) {
+                        xhtml+= '<div class="price">' + formatter.format(obj.GIA) + 'đ</div>';
+                    } else {
+                        xhtml+= '<div class="price"><b>' + formatter.format(obj.GIA* (1 - obj.PHANTRAMGIAM / 100)) + 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' + formatter.format(obj.GIA) + 'đ</b></div>';
+                    }
+                    xhtml += '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\''+ obj.MASP+ '\');"></div></div>'
+        
+        }
+        
+        $("#product-box").html(xhtml);
+        $("#view-all_product").show();
+    }
+
+    function displayViewAll(){
+        location.reload();
     }
 </script>
 

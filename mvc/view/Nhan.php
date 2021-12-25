@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<div class="top-header">
+    <div class="top-header">
         <p>-~ YOUR LIFE YOUR STYLE ~-</p>
     </div>
 
@@ -53,13 +53,13 @@
 
             </div>
             <div class="user-nav">
-            <p style="float: left;font-size: 20px">
-                <?php
-                    if(isset($_SESSION['account'])){
+                <p style="float: left;font-size: 20px">
+                    <?php
+                    if (isset($_SESSION['account'])) {
                         $user = $_SESSION['account'];
-                        echo 'Xin chào, '.$user['TENKH'];
+                        echo 'Xin chào, ' . $user['TENKH'];
                     }
-                ?>
+                    ?>
                 </p>
                 <div class="dropdown-bell">
                     <i class="fa fa-bell"></i>
@@ -82,16 +82,15 @@
                     <i class="fa fa-user"></i><i class="fa fa-angle-down"></i>
                     <div class="dropdown-user-content">
                         <?php
-                            if(isset($_SESSION['account'])){
-                                echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
+                        if (isset($_SESSION['account'])) {
+                            echo '<a href="/CuaHangTrangSuc/LichSuGioHang">Lịch sử</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/DoiMatKhau">Đổi mật khẩu</a>
                                     <a href="/CuaHangTrangSuc/TrangChu/Logout">Đăng xuất</a>';
-                            }
-                            else{
-                                echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
+                        } else {
+                            echo ' <a href="/CuaHangTrangSuc/DangNhap">Đăng nhập</a>
                                     <a href="/CuaHangTrangSuc/DangKy">Đăng ký</a>';
-                            }
-                        ?>                        
+                        }
+                        ?>
                     </div>
                 </div>
                 <a href="/CuaHangTrangSuc/GioHang" style="cursor: pointer;"><i class="fa fa-shopping-cart"></i></a>
@@ -140,61 +139,103 @@
             <span> NHẪN</span>
         </h2>
     </div>
+    <div style="width: 80%;margin-left: 10%;margin-top: 1rem;">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Tên sản phẩm</label>
+                </div>
+                <input type="text" class="form-control" id="inputProductName" placeholder="Tên sản phẩm">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Giá sản phẩm</label>
+                </div>
+                <input type="number" class="form-control" id="inputMinProductPrice" placeholder="Giá thất nhất">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck" style="color: white;">Giá cao nhất</label>
+                </div>
+                <input type="number" class="form-control" id="inputMaxProductPrice" placeholder="Giá cao nhất">
+            </div>
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Sắp xếp giá</label>
+                </div>
+                <select class="form-control" id="inputSortProduct">
+                    <option value="">Không sắp xếp</option>
+                    <option value="1">Tăng dần</option>
+                    <option value="0">Giảm dần</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <div class="form-check mb-2">
+                    <label class="form-check-label" for="autoSizingCheck">Tìm kiếm</label>
+                </div>
+                <button onclick="searchProduct();" style="width: 15rem;float: right;font-size: 1.2rem;font-weight: bolder;" class="btn btn-primary">Tìm kiếm </button>
+            </div>
+
+
+
+        </div>
+    </div>
+    <button style="background-color:red;color:white;font-size:1.5rem;border-radius: 0.5rem;margin-left: 10%;display: none;" onclick="displayViewAll()" id="view-all_product">Hiển thị tất cả</button>
     <div class="products">
-    <div class="product-box">
-        <?php
-        $listPro = $data['data'];
-        $start = ($data['page'] - 1) * 8;
+        <div class="product-box" id="product-box">
+            <?php
+            $listPro = $data['data'];
+            $start = ($data['page'] - 1) * 8;
 
 
-        if ($start < count($listPro)) {
-            $end = ($start + 8) > count($listPro) ? count($listPro) : ($start + 8);
-            for ($i = $start; $i < $end; $i++) {
-                echo '<div class="product-item">
+            if ($start < count($listPro)) {
+                $end = ($start + 8) > count($listPro) ? count($listPro) : ($start + 8);
+                for ($i = $start; $i < $end; $i++) {
+                    echo '<div class="product-item">
                     <a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' . $listPro[$i]['MASP'] . '">
                         <img src="/CuaHangTrangSuc/public/image/HINHANH/' . $listPro[$i]['HINHANH'] . '" alt="">
                         <i class="fa fa-search"></i>    
                         <div class="product-name"> ' . $listPro[$i]['TENSP'] . '</div>
                     </a>';
-                if ($listPro[$i]['PHANTRAMGIAM'] == 0) {
-                    echo '<div class="price">' . number_format($listPro[$i]['GIA']) . 'đ</div>';
-                } else {
-                    echo '<div class="price"><b>' . number_format($listPro[$i]['GIA'] * (1 - $listPro[$i]['PHANTRAMGIAM'] / 100)) . 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' . number_format($listPro[$i]['GIA']) . 'đ</b></div>';
-                }
-                echo '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $listPro[$i]['MASP'] . '\');"></div>
+                    if ($listPro[$i]['PHANTRAMGIAM'] == 0) {
+                        echo '<div class="price">' . number_format($listPro[$i]['GIA']) . 'đ</div>';
+                    } else {
+                        echo '<div class="price"><b>' . number_format($listPro[$i]['GIA'] * (1 - $listPro[$i]['PHANTRAMGIAM'] / 100)) . 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' . number_format($listPro[$i]['GIA']) . 'đ</b></div>';
+                    }
+                    echo '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\'' . $listPro[$i]['MASP'] . '\');"></div>
                 </div>';
+                }
             }
-        }
 
 
-        ?>
+            ?>
+        </div>
     </div>
-    </div>
-    
+
     <div class="pagination">
         <?php
         $listPro = $data['data'];
-        $numberpage = count($listPro) % 8 == 0 ? count($listPro)/8 : (int)(count($listPro)/8) + 1;
+        $numberpage = count($listPro) % 8 == 0 ? count($listPro) / 8 : (int)(count($listPro) / 8) + 1;
 
         for ($i = 0; $i < $numberpage; $i++) {
-            if ($i+1 == $data['page']) {
-                echo '<strong class="current-page page-item">'.($i+1).'</strong>';
-            }
-            else{
-                echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.($i+1).'">'.($i+1).'</a>';
+            if ($i + 1 == $data['page']) {
+                echo '<strong class="current-page page-item">' . ($i + 1) . '</strong>';
+            } else {
+                echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/' . ($i + 1) . '">' . ($i + 1) . '</a>';
             }
         }
 
-        if($data['page'] != $numberpage){
-            echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.($data['page']+1).'"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
+        if ($data['page'] != $numberpage) {
+            echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/' . ($data['page'] + 1) . '"><i class="fa fa-angle-right" style="font-size:22px"></i></a>';
         }
-        
-        echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/'.$numberpage.'">Last</a>';
+
+        echo '<a class="page-item" href="/CuaHangTrangSuc/Nhan/Pages/' . $numberpage . '">Last</a>';
         ?>
 
     </div>
 
-   
+
     <!--footer------------------------------------------------------->
     <div class="flex-container">
         <div class="flex1"><i class="fa fa-plane" style="font-size:35px;float: left; padding: 0 8px;"></i>
@@ -262,6 +303,105 @@
                 $("#counter").html(data.COUNT)
             }
         })
+    }
+
+    function searchProduct() {
+        //Kiem tra input
+        var name = convertStringToEnglish($("#inputProductName").val());
+        var smallPrice = $("#inputMinProductPrice").val()
+        var bigPrice = $("#inputMaxProductPrice").val();
+        var sort = $("#inputSortProduct").val();
+
+        //Kiem tra du lieu dau vao
+        if (smallPrice != '') {
+            smallPrice = parseInt(smallPrice);
+            if (smallPrice < 0) {
+                alert("Giá thấp nhất phải lớn hơn 0");
+                return;
+            }
+
+            if (bigPrice != '') {
+                bigPrice = parseInt(bigPrice);
+                if (bigPrice < smallPrice) {
+                    alert("Giá cao nhất phải lớn hơn giá thấp nhất");
+                    return;
+                }
+            }
+        } else if (bigPrice != '') {
+            bigPrice = parseInt(bigPrice);
+            if (bigPrice < 0) {
+                alert("Giá cao nhất phải lớn hơn 0");
+                return;
+            }
+
+        }
+
+
+
+        var phpData = (<?php echo json_encode($data) ?>)
+        var data = phpData.data
+
+
+        //Sap xep data
+        if (sort != '') {
+            sort = parseInt(sort)
+            if (sort == 0) {
+                for (var i = 0; i < data.length - 1; i++) {
+                    for (var j = i+1; j < data.length - 1; j++) {
+                        if(parseInt(data[i].GIA) < parseInt(data[j].GIA)){
+                            var tmp = data[i];
+                            data[i] = data[j]
+                            data[j] = tmp
+                        }
+                    }
+                }
+            } else if (sort == 1) {
+                for (var i = 0; i < data.length - 1; i++) {
+                    for (var j = i+1; j < data.length - 1; j++) {
+                        if(parseInt(data[i].GIA) > parseInt(data[j].GIA)){
+                            var tmp = data[i];
+                            data[i] = data[j]
+                            data[j] = tmp
+                        }
+                    }
+                }
+            }
+        }
+        var xhtml = "";
+        
+        for (var key in data) {
+            
+            var obj = data[key];
+            if(name != '' && !(convertStringToEnglish(obj.TENSP)).includes(name)){
+                continue;
+            }
+            if(smallPrice != '' && smallPrice > obj.GIA){
+                continue;
+            }
+            if(bigPrice != '' && bigPrice < obj.GIA){
+                continue;
+            }
+            xhtml += '<div class="product-item">'+
+                    '<a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' + obj.MASP + '">'+
+                        '<img src="/CuaHangTrangSuc/public/image/HINHANH/' + obj.HINHANH+ '" alt="">'+
+                        '<i class="fa fa-search"></i>'+    
+                        '<div class="product-name"> ' + obj.TENSP + '</div>'+
+                    '</a>';
+                    if (parseInt(obj.PHANTRAMGIAM) == 0) {
+                        xhtml+= '<div class="price">' + formatter.format(obj.GIA) + 'đ</div>';
+                    } else {
+                        xhtml+= '<div class="price"><b>' + formatter.format(obj.GIA* (1 - obj.PHANTRAMGIAM / 100)) + 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' + formatter.format(obj.GIA) + 'đ</b></div>';
+                    }
+                    xhtml += '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\''+ obj.MASP+ '\');"></div></div>'
+        
+        }
+        
+        $("#product-box").html(xhtml);
+        $("#view-all_product").show();
+    }
+
+    function displayViewAll(){
+        location.reload();
     }
 </script>
 

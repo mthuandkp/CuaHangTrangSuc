@@ -141,7 +141,7 @@
             <span> SẢN PHẨM NỖI BẬT</span>
         </h2>
     </div>
-    <div class="products" style="margin-left: 10rem;">
+    <div class="products">
         <div class="product-box">
             <?php
             $listPro = $data['data'];
@@ -167,7 +167,7 @@
     <h2 class="content">
         <span> SẢN PHẨM MỚI</span>
     </h2>
-    <div class="products" style="margin-left: 10rem;">
+    <div class="products">
         <div class="product-box">
             <?php
             $listPro = $data['data2'];

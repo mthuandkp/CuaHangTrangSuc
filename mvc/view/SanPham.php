@@ -182,8 +182,9 @@
 
         </div>
     </div>
+    <button style="background-color:#1499ff;color:white;font-size:1.3rem;border-radius: 0.5rem;margin-left: 10%;display: none;padding:0 1rem 0 1rem;" onclick="displayViewAll()" id="view-all_product">Hiển thị tất cả</button>
     <div class="products">
-        <div class="product-box">
+        <div class="product-box" id="product-box">
             <?php
             $listPro = $data['data'];
             $start = ($data['page'] - 1) * 8;
@@ -340,7 +341,6 @@
 
         var phpData = (<?php echo json_encode($data) ?>)
         var data = phpData.data
-        var page = phpData.page
 
 
         //Sap xep data
@@ -368,14 +368,41 @@
                 }
             }
         }
-
-        console.log(data)
+        var xhtml = "";
+        
         for (var key in data) {
+            
             var obj = data[key];
-            if(name == '' || !convertStringToEnglish(obj.TENSP).includes(name)){
+            if(name != '' && !(convertStringToEnglish(obj.TENSP)).includes(name)){
                 continue;
             }
+            if(smallPrice != '' && smallPrice > obj.GIA){
+                continue;
+            }
+            if(bigPrice != '' && bigPrice < obj.GIA){
+                continue;
+            }
+            xhtml += '<div class="product-item">'+
+                    '<a href="/CuaHangTrangSuc/ChiTietSanPham/SanPham/' + obj.MASP + '">'+
+                        '<img src="/CuaHangTrangSuc/public/image/HINHANH/' + obj.HINHANH+ '" alt="">'+
+                        '<i class="fa fa-search"></i>'+    
+                        '<div class="product-name"> ' + obj.TENSP + '</div>'+
+                    '</a>';
+                    if (parseInt(obj.PHANTRAMGIAM) == 0) {
+                        xhtml+= '<div class="price">' + formatter.format(obj.GIA) + 'đ</div>';
+                    } else {
+                        xhtml+= '<div class="price"><b>' + formatter.format(obj.GIA* (1 - obj.PHANTRAMGIAM / 100)) + 'đ </b>&nbsp;&nbsp;&nbsp;<b style="text-decoration: line-through;font-weight:normal;">' + formatter.format(obj.GIA) + 'đ</b></div>';
+                    }
+                    xhtml += '<div class="add-cart"> <input type="button" value="Thêm vào giỏ" id="btn" onclick="addToCart(\''+ obj.MASP+ '\');"></div></div>'
+        
         }
+        
+        $("#product-box").html(xhtml);
+        $("#view-all_product").show();
+    }
+
+    function displayViewAll(){
+        location.reload();
     }
 </script>
 
